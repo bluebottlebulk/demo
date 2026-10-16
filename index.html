@@ -112,7 +112,7 @@
                 <div id="dbStatusBadge" class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5">
                     <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span> Menghubungkan DB...
                 </div>
-                <button onclick="refreshOrders()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 p-2 rounded-xl text-xs font-bold">
+                <button onclick="refreshOrders()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 p-2 rounded-xl text-xs font-bold" title="Refresh Data">
                     <i class="fa-solid fa-rotate-right"></i>
                 </button>
             </div>
@@ -207,29 +207,26 @@
     <div id="toastContainer" class="fixed top-16 right-4 z-50 flex flex-col gap-2 max-w-xs w-full pointer-events-none"></div>
 
     <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, updateDoc, doc, onSnapshot, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyClmAHnYMxFpFb1E8UOpuBRu2P27k6BacI",
-    authDomain: "umkm-demo.firebaseapp.com",
-    projectId: "umkm-demo",
-    storageBucket: "umkm-demo.firebasestorage.app",
-    messagingSenderId: "367487754481",
-    appId: "1:367487754481:web:155de99a18ae2ff69e0950",
-    measurementId: "G-MPDB7PZZDC"
-  };
+        // ==========================================================
+        // GANTI BAGIAN INI DENGAN KONFIGURASI FIREBASE MILIKMU SENDIRI
+        // (Ambil dari Project Settings -> General -> Your apps di Firebase Console)
+        // ==========================================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyClmAHnYMxFpFb1E8UOpuBRu2P27k6BacI",
+            authDomain: "umkm-demo.firebaseapp.com",
+            projectId: "umkm-demo",
+            storageBucket: "umkm-demo.firebasestorage.app",
+            messagingSenderId: "367487754481",
+            appId: "1:367487754481:web:155de99a18ae2ff69e0950"
+            measurementId: "G-MPDB7PZZDC"
+        };
+        const appId = 'umkm-pos-demo';
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-
-        let db, auth, currentUser = null;
+        let db, auth;
         let ordersData = [];
 
         const MENUS = [
@@ -293,16 +290,17 @@
         // Inisialisasi Firebase & Auth
         async function initFirebase() {
             try {
+                // Periksa apakah konfigurasi masih menggunakan teks bawaan
+                if (firebaseConfig.apiKey.includes("MASUKKAN")) {
+                    throw new Error("API Key Firebase belum diisi.");
+                }
+
                 const app = initializeApp(firebaseConfig);
                 auth = getAuth(app);
                 db = getFirestore(app);
 
-                if (initialToken) {
-                    await signInWithCustomToken(auth, initialToken);
-                } else {
-                    await signInAnonymously(auth);
-                }
-                currentUser = auth.currentUser;
+                // Login anonim untuk akses database
+                await signInAnonymously(auth);
 
                 document.getElementById('dbStatusBadge').className = 'bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5';
                 document.getElementById('dbStatusBadge').innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500"></span> DB Terhubung';
@@ -314,17 +312,18 @@
                     snapshot.forEach(docSnap => {
                         ordersData.push({ id: docSnap.id, ...docSnap.data() });
                     });
-                    // Urutkan dari yang terbaru
                     ordersData.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
                     updateCashierBadges();
                     if (currentMode === 'cashier') renderCashierOrders();
                 }, (error) => {
                     console.error("Firestore error:", error);
+                    window.showToast("Koneksi database terganggu.");
                 });
 
             } catch (err) {
                 console.error("Firebase init failed:", err);
-                document.getElementById('dbStatusBadge').innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-500"></span> Offline Mode';
+                document.getElementById('dbStatusBadge').className = 'bg-rose-100 text-rose-800 text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5';
+                document.getElementById('dbStatusBadge').innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-500"></span> Konfigurasi Firebase Salah';
             }
         }
 
@@ -485,25 +484,26 @@
                 notes: notes || '-',
                 items: items,
                 total: total,
-                status: 'pending', // pending -> processing -> completed
+                status: 'pending',
                 createdAt: Date.now()
             };
 
             try {
                 if (db) {
                     await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'orders'), orderData);
+                } else {
+                    throw new Error("Database belum terhubung.");
                 }
                 window.closeCheckoutModal();
                 cart = {};
                 renderMenuList();
 
-                // Tampilkan Modal Tiket Antrean
                 document.getElementById('ticketCodeText').textContent = orderCode;
                 document.getElementById('ticketModal').classList.remove('hidden');
                 document.getElementById('ticketModal').classList.add('flex');
             } catch (err) {
                 console.error("Gagal kirim pesanan:", err);
-                window.showToast('Gagal mengirim pesanan. Periksa koneksi.');
+                window.showToast('Gagal mengirim pesanan. Periksa konfigurasi database.');
             }
         }
 
@@ -642,6 +642,7 @@
 
         window.refreshOrders = function() {
             window.showToast('Memperbarui data kasir...');
+            initFirebase();
         }
 
         window.onload = initPage;
