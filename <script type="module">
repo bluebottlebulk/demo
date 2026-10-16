@@ -213,7 +213,7 @@
 
         // Konfigurasi Database Real-time
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'umkm-pos-demo';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : { apiKey: "demo", projectId: "demo" };
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : { apiKey: "AIzaSyClmAHnYMxFpFb1E8UOpuBRu2P27k6BacI", projectId: "umkm-demo" };
         const initialToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
         let db, auth, currentUser = null;
