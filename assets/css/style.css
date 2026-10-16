@@ -183,7 +183,12 @@ footer {
 
 /* --- RESPONSIF KHUSUS MOBILE (Layar < 768px) --- */
 @media (max-width: 768px) {
-    /* Sembunyikan menu navbar teks biasa di HP agar tidak penuh, diganti tampilan ringkas */
+    /* Perbesar padding kiri-kanan dari 4% menjadi 6% atau 20px supaya lebih lega */
+    .wrapper, .container {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
     nav {
         display: flex;
         gap: 12px;
@@ -194,27 +199,20 @@ footer {
         font-size: 0.85rem;
     }
 
-    .wrapper, .container {
-        padding: 90px 4% 50px 4%;
-    }
-
     /* Penyesuaian ukuran grid agar turun ke bawah 1 kolom secara rapi di HP */
-    .features-grid, .pricing-grid, .steps-grid, .grid {
+    .features-grid, .pricing-grid, .steps-grid, .grid, .grid-demos {
         grid-template-columns: 1fr !important;
         gap: 16px;
     }
 
     /* Penyesuaian padding kartu di HP */
-    .feature-card, .card, .pricing-card, .step-card, .feature-box {
-        padding: 20px;
+    .feature-card, .card, .pricing-card, .step-card, .feature-box, .card-demo {
+        padding: 24px 20px;
     }
 
-    /* Banner CTA di E-Menu menyesuaikan tumpukan vertikal */
-    .cta-banner {
-        flex-direction: column;
-        align-items: flex-start !important;
-        padding: 24px !important;
-        gap: 16px !important;
+    /* Banner CTA di E-Menu / Bottom CTA menyesuaikan tumpukan vertikal */
+    .cta-banner, .bottom-cta {
+        padding: 30px 20px !important;
     }
 
     .cta-banner .btn-primary {
