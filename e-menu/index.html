@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital E-Menu Solusi Restoran Modern — Karsalana Lab</title>
+    <!-- Favicon dari Root -->
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --primary: #3b82f6;
+            --primary-dark: #1e3a8a;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --header-bg: rgba(248, 250, 252, 0.85);
+            --accent-bg: #eff6ff;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0f172a;
+                --card-bg: #1e293b;
+                --text-main: #ffffff;
+                --text-muted: #94a3b8;
+                --primary: #60a5fa;
+                --primary-dark: #3b82f6;
+                --border-color: #334155;
+                --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+                --header-bg: rgba(15, 23, 42, 0.85);
+                --accent-bg: rgba(59, 130, 246, 0.1);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--header-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-container img {
+            height: 28px;
+            width: 28px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            color: var(--text-main);
+        }
+
+        /* Main Content */
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 140px 5% 80px 5%;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-bg);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .lead {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        /* Callout Box / CTA Banner */
+        .cta-banner {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .cta-banner text h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .cta-banner p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--primary-dark);
+            color: #ffffff;
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 14px rgba(30, 58, 138, 0.3);
+            white-space: nowrap;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Features Grid */
+        .section-heading {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .feature-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 5%;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .cta-banner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .btn-primary {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="../" class="logo-container">
+            <img src="../favicon.ico" alt="Karsalana Logo">
+            <span class="logo-text">Karsalana<span>.Lab</span></span>
+        </a>
+        <a href="../" class="back-link">&larr; Kembali ke Lab Utama</a>
+    </header>
+
+    <!-- Content Wrapper -->
+    <div class="wrapper">
+        <span class="badge">Solusi Industri F&B</span>
+        <h1>Digital E-Menu untuk Restoran & Kafe Modern</h1>
+        <p class="lead">Tinggalkan buku menu cetak konvensional. Berikan pengalaman memesan makanan yang cepat, higienis, dan interaktif langsung dari smartphone pelanggan.</p>
+
+        <!-- CTA Banner Langsung ke Demo -->
+        <div class="cta-banner">
+            <div>
+                <h3>Ingin melihat cara kerjanya secara langsung?</h3>
+                <p>Coba simulasi interaktif aplikasi e-menu dari sudut pandang pelanggan.</p>
+            </div>
+            <!-- Mengarah ke folder demo/ di dalam e-menu -->
+            <a href="./demo/" class="btn-primary">Buka Live Demo &rarr;</a>
+        </div>
+
+        <h2 class="section-heading">Kenapa Bisnis Kuliner Perlu E-Menu?</h2>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <h4>⚡ Hemat Biaya Cetak</h4>
+                <p>Ganti menu cetak kertas yang cepat rusak atau usang setiap kali ada perubahan harga atau menu baru.</p>
+            </div>
+            <div class="feature-card">
+                <h4>🔄 Update Real-Time</h4>
+                <p>Ubah ketersediaan stok makanan, tambah menu baru, atau sesuaikan harga dalam hitungan detik tanpa cetak ulang.</p>
+            </div>
+            <div class="feature-card">
+                <h4>📱 Tanpa Instal Aplikasi</h4>
+                <p>Pelanggan cukup memindai QR Code di meja menggunakan kamera HP dan menu langsung terbuka di browser.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Karsalana Lab. Solusi Digital Bisnis Anda.</p>
+    </footer>
+
+</body>
+</html>
