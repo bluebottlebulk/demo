@@ -1,31 +1,34 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Tentukan apakah file berada di root atau sub-folder (misal: /e-menu/)
+    // Deteksi apakah sedang di root atau di dalam sub-folder (misal: /e-menu/)
     const isInSubfolder = window.location.pathname.split('/').filter(Boolean).length > 1;
-    const prefix = isInSubfolder ? "../" : "./";
+    const rootPath = isInSubfolder ? "../" : "./";
 
-    // Load Header
+    // 1. Template Komponen Header
+    const headerHTML = `
+        <a href="${rootPath}" class="logo-container">
+            <img src="${rootPath}favicon.ico" alt="Karsalana Logo" style="width: 28px; height: 28px; object-fit: contain;">
+            <span class="logo-text">Karsalana<span>.Lab</span></span>
+        </a>
+        <nav>
+            <a href="${rootPath}#demos">Live Demos</a>
+            <a href="${rootPath}#services">Layanan</a>
+            <a href="https://wa.me/" target="_blank">Kontak</a>
+        </nav>
+    `;
+
+    // 2. Template Komponen Footer
+    const footerHTML = `
+        <p>&copy; 2026 Karsalana Lab. Solusi Digital Bisnis Anda.</p>
+    `;
+
+    // Masukkan ke elemen tujuan di HTML
     const headerElement = document.getElementById("site-header");
     if (headerElement) {
-        fetch(prefix + "components/header.html")
-            .then(response => response.text())
-            .then(data => {
-                // Perbaiki path gambar/link jika di dalam sub-folder
-                if (isInSubfolder) {
-                    data = data.replace(/src="\/favicon.ico"/g, 'src="../favicon.ico"');
-                    data = data.replace(/href="\/"/g, 'href="../"');
-                    data = data.replace(/href="\/#demos"/g, 'href="../#demos"');
-                }
-                headerElement.innerHTML = data;
-            });
+        headerElement.innerHTML = headerHTML;
     }
 
-    // Load Footer
     const footerElement = document.getElementById("site-footer");
     if (footerElement) {
-        fetch(prefix + "components/footer.html")
-            .then(response => response.text())
-            .then(data => {
-                footerElement.innerHTML = data;
-            });
+        footerElement.innerHTML = footerHTML;
     }
 });
