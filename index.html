@@ -4,322 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karsalana Lab — Jasa Pembuatan Website & Web App</title>
-    <!-- Google Fonts: Inter -->
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* CSS Variables untuk Light & Dark Mode */
-        :root {
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --primary: #3b82f6; /* Warna biru cerah/medium menyesuaikan logo */
-            --primary-dark: #1e3a8a; /* Biru tua khas logo Karsalana */
-            --border-color: #e2e8f0;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            --header-bg: rgba(248, 250, 252, 0.85);
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: #0f172a;
-                --card-bg: #1e293b;
-                --text-main: #ffffff; /* Dark mode full putih bersih */
-                --text-muted: #94a3b8;
-                --primary: #60a5fa;
-                --primary-dark: #3b82f6;
-                --border-color: #334155;
-                --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-                --header-bg: rgba(15, 23, 42, 0.85);
-            }
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
-
-        /* Header / Navbar */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: var(--header-bg);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 5%;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo-container img {
-            height: 36px;
-            width: auto;
-        }
-
-        .logo-text {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--text-main);
-            letter-spacing: -0.5px;
-        }
-
-        .logo-text span {
-            color: var(--primary);
-        }
-
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            margin-left: 24px;
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        nav a:hover {
-            color: var(--text-main);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 140px 5% 80px 5%;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .badge {
-            display: inline-block;
-            background-color: rgba(59, 130, 246, 0.1);
-            color: var(--primary);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.2rem, 4vw, 3.2rem);
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 20px;
-            color: var(--text-main);
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 35px;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            background-color: var(--primary-dark);
-            color: #ffffff;
-            padding: 12px 28px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            box-shadow: 0 4px 14px rgba(30, 58, 138, 0.3);
-            transition: transform 0.2s, opacity 0.2s;
-        }
-
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        /* Section Container */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 60px 5%;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-title h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 10px;
-        }
-
-        .section-title p {
-            color: var(--text-muted);
-        }
-
-        /* Grid Showcase / Demo Web */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: var(--shadow);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            color: var(--text-main);
-        }
-
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 24px;
-        }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid var(--border-color);
-            padding-top: 16px;
-        }
-
-        .tag {
-            font-size: 0.8rem;
-            font-weight: 600;
-            background-color: rgba(100, 116, 139, 0.1);
-            color: var(--text-muted);
-            padding: 4px 10px;
-            border-radius: 4px;
-        }
-
-        .btn-secondary {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .btn-secondary:hover {
-            text-decoration: underline;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 5%;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav { display: none; }
-        }
-    </style>
+    <!-- Panggil CSS Terpusat -->
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
 
-    <!-- Header / Navbar -->
-    <header>
-        <a href="#" class="logo-container">
-            <!-- Letakkan file Karsalana.png sejajar dengan index.html atau ubah path src-nya -->
-            <img src="Karsalana.png" alt="Karsalana Logo">
-            <span class="logo-text">Karsalana<span>.Lab</span></span>
-        </a>
-        <nav>
-            <a href="#demos">Live Demos</a>
-            <a href="#services">Layanan</a>
-            <a href="https://wa.me/" target="_blank">Kontak</a>
-        </nav>
-    </header>
+    <!-- Header Otomatis Dimuat -->
+    <header id="site-header"></header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" style="padding-top: 140px; text-align: center; max-width: 800px; margin: 0 auto;">
         <span class="badge">🚀 Karsalana Lab Development</span>
-        <h1>Solusi Pembuatan Website Profesional & Fungsional</h1>
-        <p>Wujudkan sistem digital, profil bisnis, atau aplikasi web interaktif untuk bisnismu dengan performa tinggi dan desain rapi.</p>
+        <h1 style="font-size: 3rem; margin-bottom: 20px;">Solusi Pembuatan Website Profesional & Fungsional</h1>
+        <p style="color: var(--text-muted); margin-bottom: 35px; font-size: 1.1rem;">Wujudkan sistem digital, profil bisnis, atau aplikasi web interaktif untuk bisnismu.</p>
         <a href="#demos" class="btn-primary">Jelajahi Demo Aplikasi</a>
     </section>
 
     <!-- Showcase / Demo Section -->
     <section id="demos" class="container">
-        <div class="section-title">
-            <h2>Live Demo & Proyek Web</h2>
-            <p>Coba langsung aplikasi web interaktif yang siap diimplementasikan untuk kebutuhanmu.</p>
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h2 style="font-size: 2rem; margin-bottom: 10px;">Live Demo & Proyek Web</h2>
+            <p style="color: var(--text-muted);">Coba langsung aplikasi web interaktif buatan Karsalana.</p>
         </div>
 
-        <div class="grid">
-            <!-- Card Demo 1: E-Menu -->
-            <div class="card">
-                <div>
-                    <h3>Digital E-Menu & Resto</h3>
-                    <p>Sistem katalog menu digital interaktif berbasis web untuk restoran atau kafe. Pelanggan bisa langsung pesan melalui perangkat mereka.</p>
-                </div>
-                <div class="card-footer">
-                    <span class="tag">Web App</span>
-                    <!-- Mengarah ke sub-folder sesuai rencanamu -->
-                    <a href="./e-menu/demo" class="btn-secondary">Coba Demo &rarr;</a>
-                </div>
-            </div>
-
-            <!-- Card Demo 2: Undangan Digital -->
-            <div class="card">
-                <div>
-                    <h3>Undangan Digital Eksklusif</h3>
-                    <p>Website undangan pernikahan atau acara dengan fitur RSVP, hitung mundur, pemutar musik latar, dan kontrol akses tamu undangan.</p>
-                </div>
-                <div class="card-footer">
-                    <span class="tag">Invitation</span>
-                    <a href="./undangan/demo" class="btn-secondary">Coba Demo &rarr;</a>
-                </div>
-            </div>
-
-            <!-- Card Demo 3: Company Profile -->
-            <div class="card">
-                <div>
-                    <h3>Company Profile & Katalog</h3>
-                    <p>Situs profil perusahaan yang bersih, cepat, responsif di semua perangkat, serta dioptimalkan untuk mesin pencari (SEO).</p>
-                </div>
-                <div class="card-footer">
-                    <span class="tag">Business</span>
-                    <a href="./company/demo" class="btn-secondary">Coba Demo &rarr;</a>
-                </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+            <div style="background: var(--card-bg); border: 1px solid var(--border-color); padding: 30px; border-radius: 12px;">
+                <h3 style="margin-bottom: 12px;">Digital E-Menu & Resto</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">Sistem katalog menu digital interaktif untuk kafe dan restoran.</p>
+                <a href="./e-menu/" style="color: var(--primary); text-decoration: none; font-weight: 600;">Lihat Detail &rarr;</a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Karsalana Lab. Seluruh hak cipta dilindungi.</p>
-    </footer>
+    <!-- Footer Otomatis Dimuat -->
+    <footer id="site-footer"></footer>
 
+    <!-- Panggil Script Loader -->
+    <script src="./assets/js/component-loader.js"></script>
 </body>
 </html>
