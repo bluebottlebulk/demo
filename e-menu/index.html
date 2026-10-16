@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital E-Menu Solusi Restoran Modern — Karsalana Lab</title>
+    <!-- Karena posisi file ada di dalam folder e-menu/, naik satu level (../) untuk akses favicon di root -->
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Panggil CSS Terpusat dari Root -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Panggil CSS dari root dengan naik satu level -->
     <link rel="stylesheet" href="../assets/css/style.css">
     <style>
-        /* Tambahan styling khusus halaman e-menu */
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -87,6 +87,7 @@
                 <h3 style="font-size: 1.3rem; margin-bottom: 8px;">Ingin melihat cara kerjanya secara langsung?</h3>
                 <p style="color: var(--text-muted); font-size: 0.95rem;">Coba simulasi interaktif aplikasi e-menu dari sudut pandang pelanggan.</p>
             </div>
+            <!-- Mengarah ke folder demo di dalam folder e-menu -->
             <a href="./demo/" class="btn-primary">Buka Live Demo &rarr;</a>
         </div>
 
@@ -153,7 +154,7 @@
     <!-- Footer Otomatis Dimuat via Komponen -->
     <footer id="site-footer"></footer>
 
-    <!-- Script Loader (Otomatis menyesuaikan path folder untuk header/footer) -->
+    <!-- Script Loader dari Root -->
     <script src="../assets/js/component-loader.js"></script>
 </body>
 </html>
