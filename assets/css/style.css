@@ -41,7 +41,8 @@
 body {
     background-color: var(--bg-color);
     color: var(--text-main);
-    line-height: 1.7; /* Spasi antar baris diperlonggar agar nyaman dibaca */
+    line-height: 1.7;
+    overflow-x: hidden; /* Mencegah layar bergeser ke samping */
 }
 
 /* Header / Navbar Styles */
@@ -63,19 +64,19 @@ header {
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     text-decoration: none;
 }
 
 .logo-container img {
-    height: 28px;
-    width: 28px;
+    height: 26px;
+    width: 26px;
     object-fit: contain;
 }
 
 .logo-text {
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: var(--text-main);
     letter-spacing: -0.02em;
 }
@@ -87,9 +88,9 @@ header {
 nav a {
     color: var(--text-muted);
     text-decoration: none;
-    margin-left: 24px;
+    margin-left: 20px;
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 nav a:hover {
@@ -100,7 +101,7 @@ nav a:hover {
     color: var(--text-muted);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .back-link:hover {
@@ -111,31 +112,30 @@ nav a:hover {
 .wrapper, .container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 120px 5% 80px 5%;
+    padding: 100px 5% 60px 5%; /* Padding atas disesuaikan agar pas di HP */
 }
 
 h1, h2, h3, h4 {
     color: var(--text-main);
-    letter-spacing: -0.03em; /* Rapatkan sedikit jarak huruf agar berkesan modern/tech */
+    letter-spacing: -0.03em;
 }
 
-/* Perbaikan ukuran Judul Utama & Lead Teks */
 .wrapper h1, .hero h1 {
-    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-size: clamp(1.8rem, 3.5vw, 2.75rem);
     font-weight: 800;
     line-height: 1.25;
     margin-bottom: 16px;
 }
 
 .wrapper .lead, .hero p {
-    font-size: 1.05rem;
+    font-size: 1rem;
     color: var(--text-muted);
     line-height: 1.6;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 }
 
 .section-heading, .container h2 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 12px;
 }
@@ -144,13 +144,13 @@ h1, h2, h3, h4 {
     display: inline-block;
     background-color: var(--accent-bg);
     color: var(--primary);
-    padding: 6px 14px;
+    padding: 5px 12px;
     border-radius: 20px;
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
 }
 
 .btn-primary {
@@ -161,9 +161,10 @@ h1, h2, h3, h4 {
     border-radius: 10px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.925rem;
     box-shadow: 0 4px 14px rgba(30, 58, 138, 0.25);
     transition: transform 0.2s ease, opacity 0.2s ease;
+    text-align: center;
 }
 
 .btn-primary:hover {
@@ -174,12 +175,50 @@ h1, h2, h3, h4 {
 /* Footer Styles */
 footer {
     text-align: center;
-    padding: 40px 5%;
+    padding: 30px 5%;
     border-top: 1px solid var(--border-color);
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
+/* --- RESPONSIF KHUSUS MOBILE (Layar < 768px) --- */
 @media (max-width: 768px) {
-    nav { display: none; }
+    /* Sembunyikan menu navbar teks biasa di HP agar tidak penuh, diganti tampilan ringkas */
+    nav {
+        display: flex;
+        gap: 12px;
+    }
+    
+    nav a {
+        margin-left: 0;
+        font-size: 0.85rem;
+    }
+
+    .wrapper, .container {
+        padding: 90px 4% 50px 4%;
+    }
+
+    /* Penyesuaian ukuran grid agar turun ke bawah 1 kolom secara rapi di HP */
+    .features-grid, .pricing-grid, .steps-grid, .grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+    }
+
+    /* Penyesuaian padding kartu di HP */
+    .feature-card, .card, .pricing-card, .step-card, .feature-box {
+        padding: 20px;
+    }
+
+    /* Banner CTA di E-Menu menyesuaikan tumpukan vertikal */
+    .cta-banner {
+        flex-direction: column;
+        align-items: flex-start !important;
+        padding: 24px !important;
+        gap: 16px !important;
+    }
+
+    .cta-banner .btn-primary {
+        width: 100%;
+        text-align: center;
+    }
 }
