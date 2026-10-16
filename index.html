@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Kasir & Menu Digital UMKM</title>
+    <title>Sistem Kasir & Menu Digital UMKM (Demo Mode)</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -24,6 +24,10 @@
             }
         }
     </script>
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
 </head>
 <body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col selection:bg-orange-500 selection:text-white">
 
@@ -35,15 +39,22 @@
                 <span id="headerRestoName" class="font-extrabold text-sm sm:text-base tracking-tight">Mie & Kopi Juara</span>
             </div>
             
-            <!-- TOGGLE MODE -->
-            <div class="bg-slate-800 p-1 rounded-xl flex items-center gap-1 border border-slate-700">
-                <button onclick="switchMode('customer')" id="modeCustomerBtn" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-orange-600 text-white shadow-sm cursor-pointer">
-                    <i class="fa-solid fa-mobile-screen mr-1"></i> Pelanggan
-                </button>
-                <button onclick="switchMode('cashier')" id="modeCashierBtn" class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white cursor-pointer">
-                    <i class="fa-solid fa-cash-register mr-1"></i> Kasir POS
-                    <span id="cashierBadge" class="ml-1 bg-rose-500 text-white px-1.5 py-0.5 rounded-full text-[10px] hidden">0</span>
-                </button>
+            <div class="flex items-center gap-3">
+                <!-- STATUS DEMO BADGE -->
+                <div id="dbStatusBadge" class="bg-indigo-100 text-indigo-800 text-[11px] font-extrabold px-3 py-1 rounded-xl flex items-center gap-1.5 shadow-xs">
+                    <span class="w-2 h-2 rounded-full bg-indigo-500"></span> Mode Demo Mandiri
+                </div>
+
+                <!-- TOGGLE MODE -->
+                <div class="bg-slate-800 p-1 rounded-xl flex items-center gap-1 border border-slate-700">
+                    <button onclick="switchMode('customer')" id="modeCustomerBtn" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-orange-600 text-white shadow-sm cursor-pointer">
+                        <i class="fa-solid fa-mobile-screen mr-1"></i> Pelanggan
+                    </button>
+                    <button onclick="switchMode('cashier')" id="modeCashierBtn" class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white cursor-pointer relative">
+                        <i class="fa-solid fa-cash-register mr-1"></i> Kasir POS
+                        <span id="cashierBadge" class="ml-1 bg-rose-500 text-white px-1.5 py-0.5 rounded-full text-[10px] hidden">0</span>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
@@ -101,19 +112,16 @@
         </div>
     </div>
 
-    <!-- VIEW 2: TAMPILAN KASIR POS (REAL-TIME DATABASE) -->
+    <!-- VIEW 2: TAMPILAN KASIR POS (LOCAL DEMO STORAGE) -->
     <div id="cashierView" class="flex-1 max-w-4xl w-full mx-auto p-4 hidden flex-col pb-12">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
             <div>
-                <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">Dashboard Kasir POS</div>
-                <h2 class="text-lg font-extrabold text-slate-900">Kelola Pesanan Masuk (Real-Time)</h2>
+                <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">Dashboard Kasir POS (Demo)</div>
+                <h2 class="text-lg font-extrabold text-slate-900">Kelola Pesanan Masuk</h2>
             </div>
             <div class="flex items-center gap-2">
-                <div id="dbStatusBadge" class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5">
-                    <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span> Menghubungkan DB...
-                </div>
-                <button onclick="refreshOrders()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 p-2 rounded-xl text-xs font-bold cursor-pointer" title="Refresh Data">
-                    <i class="fa-solid fa-rotate-right"></i>
+                <button onclick="resetDemoOrders()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-2 rounded-xl text-xs font-bold cursor-pointer" title="Reset Data Demo">
+                    <i class="fa-solid fa-rotate-right mr-1"></i> Reset Data
                 </button>
             </div>
         </div>
@@ -171,7 +179,7 @@
                     <span class="text-xs font-bold text-slate-500">Total Tagihan</span>
                     <span id="checkoutModalTotal" class="text-lg font-extrabold text-orange-600">Rp 0</span>
                 </div>
-                <button onclick="submitOrderToDatabase()" class="w-full bg-orange-600 hover:bg-orange-500 text-white font-extrabold text-sm py-3.5 rounded-2xl shadow-lg shadow-orange-600/30 flex items-center justify-center gap-2 transition active:scale-95 cursor-pointer">
+                <button onclick="submitOrderToDemo()" class="w-full bg-orange-600 hover:bg-orange-500 text-white font-extrabold text-sm py-3.5 rounded-2xl shadow-lg shadow-orange-600/30 flex items-center justify-center gap-2 transition active:scale-95 cursor-pointer">
                     <i class="fa-solid fa-paper-plane"></i>
                     <span>Kirim Pesanan ke Kasir</span>
                 </button>
@@ -206,29 +214,7 @@
     <!-- TOAST NOTIFICATION -->
     <div id="toastContainer" class="fixed top-16 right-4 z-50 flex flex-col gap-2 max-w-xs w-full pointer-events-none"></div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, updateDoc, doc, onSnapshot, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // ==========================================================
-        // GANTI DI SINI DENGAN KONFIGURASI FIREBASE MILIKMU SENDIRI
-        // (Atau biarkan menggunakan Local Fallback jika ingin mode offline instan)
-        // ==========================================================
-        const firebaseConfig = {
-            apiKey: "AIzaSyClmAHnYMxFpFb1E8UOpuBRu2P27k6BacI",
-    authDomain: "umkm-demo.firebaseapp.com",
-    projectId: "umkm-demo",
-    storageBucket: "umkm-demo.firebasestorage.app",
-    messagingSenderId: "367487754481",
-    appId: "1:367487754481:web:155de99a18ae2ff69e0950",
-    measurementId: "G-MPDB7PZZDC"
-        };
-        const appId = 'umkm-pos-demo';
-
-        let db = null, auth = null;
-        let ordersData = [];
-
+    <script>
         const MENUS = [
             { id: 'm1', name: 'Mie Hompimpa Level 1', category: 'Mie & Utama', price: 11000, emoji: '🍜', desc: 'Gurih asin pedas ringan nikmat' },
             { id: 'm2', name: 'Mie Gacoan Level 3', category: 'Mie & Utama', price: 11000, emoji: '🍝', desc: 'Manis pedas favorit paling laris' },
@@ -248,6 +234,7 @@
         let restoName = 'Mie & Kopi Juara';
         let tableNumber = 'Meja 04';
         let kasirWhatsAppNumber = '6281234567890';
+        let ordersData = [];
 
         window.formatRp = function(num) {
             return 'Rp ' + Number(num || 0).toLocaleString('id-ID');
@@ -284,67 +271,45 @@
                 cashView.classList.remove('hidden');
                 btnCash.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-emerald-600 text-white shadow-sm cursor-pointer';
                 btnCust.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white cursor-pointer';
+                loadDemoOrders();
                 renderCashierOrders();
             }
         }
 
-        // Inisialisasi Firebase & Fallback
-        async function initFirebase() {
-            try {
-                if (firebaseConfig.apiKey.includes("MASUKKAN")) {
-                    throw new Error("API Key belum diset.");
-                }
-
-                const app = initializeApp(firebaseConfig);
-                auth = getAuth(app);
-                db = getFirestore(app);
-
-                await signInAnonymously(auth);
-
-                const badge = document.getElementById('dbStatusBadge');
-                if (badge) {
-                    badge.className = 'bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5';
-                    badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500"></span> DB Terhubung';
-                }
-
-                const q = query(collection(db, 'artifacts', appId, 'public', 'data', 'orders'));
-                onSnapshot(q, (snapshot) => {
-                    ordersData = [];
-                    snapshot.forEach(docSnap => {
-                        ordersData.push({ id: docSnap.id, ...docSnap.data() });
-                    });
-                    ordersData.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-                    updateCashierBadges();
-                    if (currentMode === 'cashier') renderCashierOrders();
-                }, (error) => {
-                    console.error("Firestore error:", error);
-                });
-
-            } catch (err) {
-                console.warn("Menggunakan Local Storage Mode:", err.message);
-                // Fallback menggunakan localStorage agar tetap interaktif meskipun belum setup Firebase
-                const badge = document.getElementById('dbStatusBadge');
-                if (badge) {
-                    badge.className = 'bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5';
-                    badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-blue-500"></span> Local Mode';
-                }
-                loadLocalOrders();
-            }
-        }
-
-        function loadLocalOrders() {
-            const saved = localStorage.getItem('umkm_pos_orders');
+        function loadDemoOrders() {
+            const saved = localStorage.getItem('umkm_pos_demo_orders');
             if (saved) {
                 try { ordersData = JSON.parse(saved); } catch(e) { ordersData = []; }
+            } else {
+                // Contoh pesanan awal demo
+                ordersData = [
+                    {
+                        id: 'demo_1',
+                        code: 'A-001',
+                        customerName: 'Kak Siti',
+                        table: 'Meja 02',
+                        notes: 'Tidak pakai pedas',
+                        items: [{ id: 'm1', name: 'Mie Hompimpa Level 1', price: 11000, qty: 1 }, { id: 'm8', name: 'Es Teh Manis Jumbo', price: 5000, qty: 1 }],
+                        total: 16000,
+                        status: 'pending',
+                        createdAt: Date.now() - 100000
+                    }
+                ];
+                saveDemoOrders();
             }
             updateCashierBadges();
-            if (currentMode === 'cashier') renderCashierOrders();
         }
 
-        function saveLocalOrders() {
-            localStorage.setItem('umkm_pos_orders', JSON.stringify(ordersData));
+        function saveDemoOrders() {
+            localStorage.setItem('umkm_pos_demo_orders', JSON.stringify(ordersData));
             updateCashierBadges();
-            if (currentMode === 'cashier') renderCashierOrders();
+        }
+
+        window.resetDemoOrders = function() {
+            localStorage.removeItem('umkm_pos_demo_orders');
+            loadDemoOrders();
+            renderCashierOrders();
+            window.showToast('Data demo direset ke awal!');
         }
 
         function initPage() {
@@ -363,9 +328,9 @@
             }
             if (waParam) kasirWhatsAppNumber = waParam;
 
+            loadDemoOrders();
             renderCategories();
             renderMenuList();
-            initFirebase();
         }
 
         function renderCategories() {
@@ -484,7 +449,7 @@
             document.getElementById('checkoutModal').classList.remove('flex');
         }
 
-        window.submitOrderToDatabase = async function() {
+        window.submitOrderToDemo = function() {
             const name = document.getElementById('customerName').value.trim();
             const notes = document.getElementById('customerNotes').value.trim();
 
@@ -500,6 +465,7 @@
             const orderCode = 'A-' + Math.floor(100 + Math.random() * 900);
 
             const orderData = {
+                id: 'local_' + Date.now(),
                 code: orderCode,
                 customerName: name,
                 table: tableNumber,
@@ -510,25 +476,17 @@
                 createdAt: Date.now()
             };
 
-            try {
-                if (db) {
-                    await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'orders'), orderData);
-                } else {
-                    orderData.id = 'local_' + Date.now();
-                    ordersData.unshift(orderData);
-                    saveLocalOrders();
-                }
-                window.closeCheckoutModal();
-                cart = {};
-                renderMenuList();
+            ordersData.unshift(orderData);
+            saveDemoOrders();
 
-                document.getElementById('ticketCodeText').textContent = orderCode;
-                document.getElementById('ticketModal').classList.remove('hidden');
-                document.getElementById('ticketModal').classList.add('flex');
-            } catch (err) {
-                console.error("Gagal kirim pesanan:", err);
-                window.showToast('Gagal mengirim pesanan.');
-            }
+            window.closeCheckoutModal();
+            cart = {};
+            renderMenuList();
+
+            document.getElementById('ticketCodeText').textContent = orderCode;
+            document.getElementById('ticketModal').classList.remove('hidden');
+            document.getElementById('ticketModal').classList.add('flex');
+            window.showToast('Pesanan berhasil dibuat di kasir!');
         }
 
         window.closeTicketModal = function() {
@@ -656,29 +614,14 @@
             }).join('');
         }
 
-        window.updateOrderStatus = async function(orderId, newStatus) {
-            try {
-                if (db) {
-                    await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'orders', orderId), {
-                        status: newStatus
-                    });
-                } else {
-                    const idx = ordersData.findIndex(o => o.id === orderId);
-                    if (idx !== -1) {
-                        ordersData[idx].status = newStatus;
-                        saveLocalOrders();
-                    }
-                }
+        window.updateOrderStatus = function(orderId, newStatus) {
+            const idx = ordersData.findIndex(o => o.id === orderId);
+            if (idx !== -1) {
+                ordersData[idx].status = newStatus;
+                saveDemoOrders();
+                renderCashierOrders();
                 window.showToast('Status pesanan diperbarui!');
-            } catch (err) {
-                console.error("Gagal update status:", err);
-                window.showToast('Gagal memperbarui status pesanan.');
             }
-        }
-
-        window.refreshOrders = function() {
-            window.showToast('Memperbarui data...');
-            if (!db) loadLocalOrders();
         }
 
         window.onload = initPage;
