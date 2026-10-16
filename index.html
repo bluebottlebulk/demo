@@ -31,7 +31,7 @@
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-950" id="bodyElement">
 
-    <header class="bg-white border-b border-slate-200 text-slate-900 sticky top-0 z-45 shadow-sm">
+    <header class="bg-white border-b border-slate-200 text-slate-900 sticky top-0 z-40 shadow-sm">
         <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
             <div class="flex items-center gap-2.5">
                 <span class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
@@ -39,7 +39,7 @@
             </div>
             
             <div class="flex items-center gap-2.5">
-                <!-- STATUS DEMO BADGE -->
+                <!-- DEMO BADGE -->
                 <div class="bg-amber-50 border border-amber-200 text-amber-700 text-[11px] font-extrabold px-3 py-1 rounded-xl flex items-center gap-1.5 shadow-xs">
                     <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Demo
                 </div>
@@ -84,7 +84,7 @@
         <main class="p-4 space-y-3.5 flex-1">
             <div class="bg-white border border-slate-200 rounded-2xl p-3.5 text-xs text-slate-700 flex items-center gap-3 shadow-xs">
                 <i class="fa-solid fa-circle-info text-amber-600 text-base shrink-0"></i>
-                <div>Pilih makanan favorit Anda, masukkan ke keranjang, lalu teruskan pesanan ke kasir. PPN 11% dihitung otomatis.</div>
+                <div>Pilih makanan favorit Anda, masukkan ke keranjang, lalu teruskan pesanan. PPN 11% dihitung otomatis.</div>
             </div>
 
             <div id="menuList" class="space-y-3.5">
@@ -92,6 +92,7 @@
             </div>
         </main>
 
+        <!-- CART BAR -->
         <div id="cartBar" class="fixed bottom-0 left-0 right-0 p-4 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-2xl hidden z-30 transition-all">
             <div class="max-w-xl mx-auto flex items-center justify-between gap-3">
                 <div class="flex items-center gap-3">
@@ -119,6 +120,24 @@
                 <button onclick="resetDemoOrders()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3.5 py-2 rounded-xl text-xs font-bold cursor-pointer border border-slate-200 transition" title="Reset Data Demo">
                     <i class="fa-solid fa-rotate-right mr-1"></i> Reset Data
                 </button>
+            </div>
+        </div>
+
+        <!-- SEARCH & SORT KASIR -->
+        <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-xs mb-4 flex flex-col sm:flex-row gap-3 items-center justify-between">
+            <div class="relative w-full sm:w-72">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                <input id="cashierSearchInput" type="text" placeholder="Cari berdasarkan Kode (mis: V-001)..." oninput="renderCashierOrders()"
+                    class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-3 py-2 text-xs font-semibold text-slate-900 focus:outline-none focus:border-amber-500">
+            </div>
+            <div class="flex items-center gap-2 w-full sm:w-auto">
+                <span class="text-xs font-bold text-slate-500 shrink-0">Urutkan:</span>
+                <select id="cashierSortSelect" onchange="renderCashierOrders()" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-bold text-slate-700 focus:outline-none focus:border-amber-500 w-full sm:w-auto">
+                    <option value="newest">Terbaru (Waktu)</option>
+                    <option value="oldest">Terlama</option>
+                    <option value="highest">Nominal Terbesar</option>
+                    <option value="lowest">Nominal Terkecil</option>
+                </select>
             </div>
         </div>
 
@@ -168,7 +187,7 @@
                     <div id="checkoutItemsList" class="space-y-2 bg-slate-50 p-3 rounded-2xl border border-slate-200"></div>
                 </div>
 
-                <!-- RINCIAN SUBTOTAL & PPN OTOMATIS -->
+                <!-- RINCIAN SUBTOTAL & PPN 11% OTOMATIS -->
                 <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200 space-y-2 text-xs">
                     <div class="flex justify-between text-slate-600">
                         <span>Subtotal Makanan</span>
@@ -194,9 +213,10 @@
         </div>
     </div>
 
+    <!-- MENU DETAIL MODAL -->
     <div id="menuDetailModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
-        <div class="bg-white border border-slate-200 rounded-3xl p-5 max-w-sm w-full shadow-2xl text-center space-y-4 relative">
-            <button onclick="closeMenuDetailModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 flex items-center justify-center cursor-pointer">
+        <div class="bg-white border border-slate-200 rounded-3xl p-5 max-w-sm w-full shadow-2xl text-center space-y-4 relative overflow-hidden">
+            <button onclick="closeMenuDetailModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 flex items-center justify-center cursor-pointer z-10">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <div id="detailMenuEmoji" class="w-24 h-24 bg-amber-50 border border-amber-200 rounded-3xl flex items-center justify-center text-6xl mx-auto shadow-inner">
@@ -216,6 +236,7 @@
         </div>
     </div>
 
+    <!-- TICKET MODAL -->
     <div id="ticketModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
         <div class="bg-white border border-slate-200 rounded-3xl p-6 max-w-sm w-full shadow-2xl text-center space-y-4">
             <div class="w-16 h-16 bg-amber-50 text-amber-600 border border-amber-200 rounded-full flex items-center justify-center text-3xl mx-auto shadow-inner">
@@ -235,6 +256,7 @@
         </div>
     </div>
 
+    <!-- TOAST CONTAINER -->
     <div id="toastContainer" class="fixed top-16 right-4 z-50 flex flex-col gap-2 max-w-xs w-full pointer-events-none"></div>
 
     <script>
@@ -383,11 +405,10 @@
             container.innerHTML = filtered.map(item => {
                 const qty = cart[item.id] || 0;
                 return `
-                    <div class="bg-white rounded-2xl p-3.5 border ${qty > 0 ? 'border-amber-500 ring-1 ring-amber-500/20' : 'border-slate-200'} shadow-xs flex items-center gap-3.5 transition">
-                        <!-- ZOOM BUTTON & IMAGE PREVIEW -->
-                        <div class="w-16 h-16 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-3xl shrink-0 relative group cursor-pointer shadow-inner" onclick="openMenuDetail('${item.id}')">
-                            ${item.emoji}
-                            <div class="absolute inset-0 bg-slate-950/50 rounded-2xl opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs">
+                    <div class="bg-white rounded-2xl p-3.5 border ${qty > 0 ? 'border-amber-500 ring-1 ring-amber-500/20' : 'border-slate-200'} shadow-xs flex items-center gap-3.5">
+                        <div class="w-16 h-16 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-3xl shrink-0 cursor-pointer shadow-inner relative group" onclick="openMenuDetail('${item.id}')">
+                            <span>${item.emoji}</span>
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition rounded-2xl flex items-center justify-center text-white text-xs">
                                 <i class="fa-solid fa-magnifying-glass-plus"></i>
                             </div>
                         </div>
@@ -397,7 +418,7 @@
                             <div class="text-xs text-slate-500 line-clamp-1 mt-0.5">${item.desc}</div>
                             <div class="flex items-center gap-2 mt-1">
                                 <span class="font-extrabold text-xs sm:text-sm text-amber-700 font-mono">${window.formatRp(item.price)}</span>
-                                <button onclick="openMenuDetail('${item.id}')" class="bg-amber-100 hover:bg-amber-200 text-amber-900 text-[11px] font-extrabold px-2 py-0.5 rounded-lg flex items-center gap-1 transition cursor-pointer">
+                                <button onclick="openMenuDetail('${item.id}')" class="bg-amber-100 hover:bg-amber-200 text-amber-900 text-[11px] font-extrabold px-2.5 py-1 rounded-lg flex items-center gap-1 transition cursor-pointer shadow-xs">
                                     <i class="fa-solid fa-circle-info"></i> Detail
                                 </button>
                             </div>
@@ -555,7 +576,7 @@
             document.getElementById('ticketModal').classList.remove('flex');
         }
 
-        // ================= KASIR POS LOGIC =================
+        // ================= KASIR POS LOGIC WITH SEARCH & SORT =================
         window.setCashierTab = function(tab) {
             cashierTab = tab;
             ['pending', 'processing', 'completed'].forEach(t => {
@@ -593,13 +614,32 @@
         window.renderCashierOrders = function() {
             const container = document.getElementById('cashierOrderList');
             if (!container) return;
-            const filtered = ordersData.filter(o => o.status === cashierTab);
+
+            const searchQuery = (document.getElementById('cashierSearchInput')?.value || '').toLowerCase().trim();
+            const sortBy = document.getElementById('cashierSortSelect')?.value || 'newest';
+
+            let filtered = ordersData.filter(o => o.status === cashierTab);
+
+            if (searchQuery) {
+                filtered = filtered.filter(o => 
+                    o.code.toLowerCase().includes(searchQuery) || 
+                    o.customerName.toLowerCase().includes(searchQuery)
+                );
+            }
+
+            filtered.sort((a, b) => {
+                if (sortBy === 'newest') return (b.createdAt || 0) - (a.createdAt || 0);
+                if (sortBy === 'oldest') return (a.createdAt || 0) - (b.createdAt || 0);
+                if (sortBy === 'highest') return (b.total || 0) - (a.total || 0);
+                if (sortBy === 'lowest') return (a.total || 0) - (b.total || 0);
+                return 0;
+            });
 
             if (filtered.length === 0) {
                 container.innerHTML = `
                     <div class="col-span-full py-16 text-center text-slate-400 text-xs bg-white rounded-2xl border border-slate-200">
                         <i class="fa-solid fa-clipboard-check text-3xl mb-2 text-slate-400"></i>
-                        <div>Tidak ada pesanan dengan status ini.</div>
+                        <div>Tidak ada pesanan yang sesuai.</div>
                     </div>
                 `;
                 return;
