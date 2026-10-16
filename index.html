@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Kasir & Menu Digital UMKM (Demo Mode)</title>
+    <title>Bistro & Dine Luxe - E-Menu & POS Demo</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -29,50 +29,48 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col selection:bg-orange-500 selection:text-white">
+<body class="bg-slate-50 text-slate-900 font-sans min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-950" id="bodyElement">
 
-    <!-- TOP BAR NAVIGASI MODE (PELANGGAN VS KASIR) -->
-    <header class="bg-slate-900 text-white sticky top-0 z-40 shadow-md">
+    <header class="bg-white border-b border-slate-200 text-slate-900 sticky top-0 z-45 shadow-sm">
         <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span id="headerRestoName" class="font-extrabold text-sm sm:text-base tracking-tight">Mie & Kopi Juara</span>
+            <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
+                <span id="headerRestoName" class="font-extrabold text-sm sm:text-base tracking-tight text-amber-600">Bistro & Dine Luxe</span>
             </div>
             
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2.5">
                 <!-- STATUS DEMO BADGE -->
-                <div id="dbStatusBadge" class="bg-indigo-100 text-indigo-800 text-[11px] font-extrabold px-3 py-1 rounded-xl flex items-center gap-1.5 shadow-xs">
-                    <span class="w-2 h-2 rounded-full bg-indigo-500"></span> Mode Demo Mandiri
+                <div class="bg-amber-50 border border-amber-200 text-amber-700 text-[11px] font-extrabold px-3 py-1 rounded-xl flex items-center gap-1.5 shadow-xs">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Demo
                 </div>
 
                 <!-- TOGGLE MODE -->
-                <div class="bg-slate-800 p-1 rounded-xl flex items-center gap-1 border border-slate-700">
-                    <button onclick="switchMode('customer')" id="modeCustomerBtn" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-orange-600 text-white shadow-sm cursor-pointer">
+                <div class="bg-slate-100 p-1 rounded-xl flex items-center gap-1 border border-slate-200">
+                    <button onclick="switchMode('customer')" id="modeCustomerBtn" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-amber-500 text-slate-950 shadow-sm cursor-pointer">
                         <i class="fa-solid fa-mobile-screen mr-1"></i> Pelanggan
                     </button>
-                    <button onclick="switchMode('cashier')" id="modeCashierBtn" class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white cursor-pointer relative">
-                        <i class="fa-solid fa-cash-register mr-1"></i> Kasir POS
-                        <span id="cashierBadge" class="ml-1 bg-rose-500 text-white px-1.5 py-0.5 rounded-full text-[10px] hidden">0</span>
+                    <button onclick="switchMode('cashier')" id="modeCashierBtn" class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-slate-900 cursor-pointer relative">
+                        <i class="fa-solid fa-cash-register mr-1"></i> Kasir
+                        <span id="cashierBadge" class="ml-1 bg-rose-600 text-white px-1.5 py-0.5 rounded-full text-[10px] hidden">0</span>
                     </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- VIEW 1: TAMPILAN PELANGGAN (MENU & KERANJANG) -->
     <div id="customerView" class="flex-1 max-w-xl w-full mx-auto flex flex-col pb-28">
         <!-- HEADER RESTO BANNER -->
-        <div class="bg-gradient-to-r from-orange-600 to-amber-600 text-white px-4 py-5 shadow-sm">
-            <div class="flex items-center justify-between mb-3">
+        <div class="bg-gradient-to-br from-slate-900 via-slate-900 to-amber-950 text-white px-4 py-6 shadow-md">
+            <div class="flex items-center justify-between mb-4">
                 <div>
-                    <span class="inline-block text-[10px] font-extrabold uppercase tracking-wider bg-black/20 px-2.5 py-0.5 rounded-full mb-1">
-                        <i class="fa-solid fa-utensils mr-1"></i>Self-Order Menu
+                    <span class="inline-block text-[10px] font-extrabold uppercase tracking-widest bg-amber-500/20 border border-amber-500/40 text-amber-400 px-3 py-1 rounded-full mb-1.5">
+                        <i class="fa-solid fa-utensils mr-1"></i>E-Menu & Self-Order
                     </span>
-                    <h1 class="text-xl font-extrabold tracking-tight">Pilih Menu Favoritmu</h1>
+                    <h1 class="text-xl font-extrabold tracking-tight text-white">Menu Favorit Pilihan</h1>
                 </div>
-                <div class="bg-white/15 backdrop-blur-sm border border-white/25 rounded-xl px-3 py-1.5 text-right">
-                    <span class="block text-[9px] uppercase font-bold text-orange-100">Lokasi / Meja</span>
-                    <span id="tableLabel" class="text-xs font-extrabold">Meja 04</span>
+                <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-3.5 py-2 text-right shadow-sm">
+                    <span class="block text-[9px] uppercase font-bold text-slate-300">Nomor Meja</span>
+                    <span id="tableLabel" class="text-xs font-extrabold text-amber-400">15</span>
                 </div>
             </div>
 
@@ -83,28 +81,27 @@
         </div>
 
         <!-- DAFTAR MENU -->
-        <main class="p-4 space-y-3 flex-1">
-            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-3 text-xs text-amber-900 flex items-center gap-2.5 shadow-xs">
-                <i class="fa-solid fa-circle-info text-orange-600 text-sm shrink-0"></i>
-                <div>Klik <b>+ Tambah</b> pada menu pilihanmu, lalu lanjut pesan ke kasir!</div>
+        <main class="p-4 space-y-3.5 flex-1">
+            <div class="bg-white border border-slate-200 rounded-2xl p-3.5 text-xs text-slate-700 flex items-center gap-3 shadow-xs">
+                <i class="fa-solid fa-circle-info text-amber-600 text-base shrink-0"></i>
+                <div>Pilih makanan favorit Anda, masukkan ke keranjang, lalu teruskan pesanan ke kasir. PPN 11% dihitung otomatis.</div>
             </div>
 
-            <div id="menuList" class="space-y-3">
+            <div id="menuList" class="space-y-3.5">
                 <!-- Rendered by JS -->
             </div>
         </main>
 
-        <!-- FLOATING CART BAR -->
-        <div id="cartBar" class="fixed bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur-md border-t border-slate-200 shadow-2xl hidden z-30 transition-all">
+        <div id="cartBar" class="fixed bottom-0 left-0 right-0 p-4 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-2xl hidden z-30 transition-all">
             <div class="max-w-xl mx-auto flex items-center justify-between gap-3">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-orange-600 text-white flex items-center justify-center font-extrabold text-sm shadow-md shadow-orange-600/30" id="cartCountBadge">0</div>
+                    <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center font-extrabold text-sm shadow-md shadow-amber-500/20" id="cartCountBadge">0</div>
                     <div>
                         <div class="text-[11px] font-semibold text-slate-500">Total Keranjang</div>
-                        <div class="text-base font-extrabold text-slate-900" id="cartTotalText">Rp 0</div>
+                        <div class="text-base font-extrabold text-amber-700" id="cartTotalText">Rp 0</div>
                     </div>
                 </div>
-                <button onclick="openCheckoutModal()" class="bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white font-extrabold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow-lg shadow-orange-500/30 flex items-center gap-2 active:scale-95 transition cursor-pointer">
+                <button onclick="openCheckoutModal()" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow-lg shadow-amber-500/20 flex items-center gap-2 active:scale-95 transition cursor-pointer">
                     <span>Lanjut Pesan</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
@@ -112,7 +109,6 @@
         </div>
     </div>
 
-    <!-- VIEW 2: TAMPILAN KASIR POS (LOCAL DEMO STORAGE) -->
     <div id="cashierView" class="flex-1 max-w-4xl w-full mx-auto p-4 hidden flex-col pb-12">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
             <div>
@@ -120,7 +116,7 @@
                 <h2 class="text-lg font-extrabold text-slate-900">Kelola Pesanan Masuk</h2>
             </div>
             <div class="flex items-center gap-2">
-                <button onclick="resetDemoOrders()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-2 rounded-xl text-xs font-bold cursor-pointer" title="Reset Data Demo">
+                <button onclick="resetDemoOrders()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3.5 py-2 rounded-xl text-xs font-bold cursor-pointer border border-slate-200 transition" title="Reset Data Demo">
                     <i class="fa-solid fa-rotate-right mr-1"></i> Reset Data
                 </button>
             </div>
@@ -131,10 +127,10 @@
             <button onclick="setCashierTab('pending')" id="tabPending" class="px-4 py-2 rounded-xl text-xs font-extrabold transition bg-rose-600 text-white shadow-sm cursor-pointer">
                 Baru Masuk (<span id="countPending">0</span>)
             </button>
-            <button onclick="setCashierTab('processing')" id="tabProcessing" class="px-4 py-2 rounded-xl text-xs font-extrabold transition bg-white text-slate-600 border border-slate-200 cursor-pointer">
+            <button onclick="setCashierTab('processing')" id="tabProcessing" class="px-4 py-2 rounded-xl text-xs font-extrabold transition bg-white text-slate-700 border border-slate-200 cursor-pointer">
                 Diproses Dapur (<span id="countProcessing">0</span>)
             </button>
-            <button onclick="setCashierTab('completed')" id="tabCompleted" class="px-4 py-2 rounded-xl text-xs font-extrabold transition bg-white text-slate-600 border border-slate-200 cursor-pointer">
+            <button onclick="setCashierTab('completed')" id="tabCompleted" class="px-4 py-2 rounded-xl text-xs font-extrabold transition bg-white text-slate-700 border border-slate-200 cursor-pointer">
                 Selesai / Lunas
             </button>
         </div>
@@ -145,95 +141,121 @@
         </div>
     </div>
 
-    <!-- MODAL CHECKOUT PELANGGAN -->
-    <div id="checkoutModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden items-end sm:items-center justify-center p-0 sm:p-4">
-        <div class="bg-white rounded-t-3xl sm:rounded-3xl p-5 max-w-lg w-full max-h-[90vh] flex flex-col shadow-2xl">
-            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-                <h3 class="font-extrabold text-base text-slate-800">Konfirmasi Pesanan</h3>
-                <button onclick="closeCheckoutModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center cursor-pointer">
+    <div id="checkoutModal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-50 hidden items-end sm:items-center justify-center p-0 sm:p-4">
+        <div class="bg-white border border-slate-200 text-slate-900 rounded-t-3xl sm:rounded-3xl p-5 max-w-lg w-full max-h-[90vh] flex flex-col shadow-2xl">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+                <h3 class="font-extrabold text-base text-slate-900">Konfirmasi Pesanan</h3>
+                <button onclick="closeCheckoutModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 flex items-center justify-center cursor-pointer">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
 
             <div class="overflow-y-auto py-3 space-y-3.5 flex-1">
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">Nama Pemesan <span class="text-rose-500">*</span></label>
-                    <input id="customerName" type="text" placeholder="Contoh: Kak Budi / Mbak Rina" 
-                        class="w-full border border-slate-300 rounded-xl px-3.5 py-3 text-sm font-semibold focus:outline-none focus:border-orange-500">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Nama Tamu <span class="text-rose-500">*</span></label>
+                    <input id="customerName" type="text" placeholder="Contoh: Budi / Siti" 
+                        class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-3 text-sm font-semibold text-slate-900 focus:outline-none focus:border-amber-500">
                 </div>
 
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">Catatan Tambahan (Opsional)</label>
-                    <input id="customerNotes" type="text" placeholder="Contoh: Jangan pakai daun bawang, es sedikit" 
-                        class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-orange-500">
+                    <input id="customerNotes" type="text" placeholder="Contoh: Tidak pakai sambal, es sedikit" 
+                        class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-amber-500">
                 </div>
 
                 <div>
-                    <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">Rincian Menu Dipilih</div>
+                    <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">Rincian Hidangan Terpilih</div>
                     <div id="checkoutItemsList" class="space-y-2 bg-slate-50 p-3 rounded-2xl border border-slate-200"></div>
+                </div>
+
+                <!-- RINCIAN SUBTOTAL & PPN OTOMATIS -->
+                <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200 space-y-2 text-xs">
+                    <div class="flex justify-between text-slate-600">
+                        <span>Subtotal Makanan</span>
+                        <span id="checkoutSubtotalAmount" class="font-mono font-bold">Rp 0</span>
+                    </div>
+                    <div class="flex justify-between text-slate-600 pb-2 border-b border-slate-200">
+                        <span>PPN (11%)</span>
+                        <span id="checkoutTaxAmount" class="font-mono font-bold text-amber-700">Rp 0</span>
+                    </div>
+                    <div class="flex justify-between text-slate-900 font-extrabold text-sm pt-1">
+                        <span>Total</span>
+                        <span id="checkoutModalTotal" class="font-mono text-amber-700">Rp 0</span>
+                    </div>
                 </div>
             </div>
 
             <div class="pt-3 border-t border-slate-200 flex flex-col gap-2.5">
-                <div class="flex items-center justify-between mb-1">
-                    <span class="text-xs font-bold text-slate-500">Total Tagihan</span>
-                    <span id="checkoutModalTotal" class="text-lg font-extrabold text-orange-600">Rp 0</span>
-                </div>
-                <button onclick="submitOrderToDemo()" class="w-full bg-orange-600 hover:bg-orange-500 text-white font-extrabold text-sm py-3.5 rounded-2xl shadow-lg shadow-orange-600/30 flex items-center justify-center gap-2 transition active:scale-95 cursor-pointer">
+                <button onclick="submitOrderToDemo()" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-sm py-3.5 rounded-2xl shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2 transition active:scale-95 cursor-pointer">
                     <i class="fa-solid fa-paper-plane"></i>
                     <span>Kirim Pesanan ke Kasir</span>
-                </button>
-                <button onclick="submitOrderToWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs py-3 rounded-2xl flex items-center justify-center gap-2 transition cursor-pointer">
-                    <i class="fa-brands fa-whatsapp text-base"></i>
-                    <span>Atau Kirim via WhatsApp Kasir</span>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- MODAL TIKET ANTREAN BERHASIL -->
-    <div id="ticketModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-6 max-w-sm w-full shadow-2xl text-center space-y-4">
-            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto shadow-inner">
+    <div id="menuDetailModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
+        <div class="bg-white border border-slate-200 rounded-3xl p-5 max-w-sm w-full shadow-2xl text-center space-y-4 relative">
+            <button onclick="closeMenuDetailModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 flex items-center justify-center cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="detailMenuEmoji" class="w-24 h-24 bg-amber-50 border border-amber-200 rounded-3xl flex items-center justify-center text-6xl mx-auto shadow-inner">
+                🥩
+            </div>
+            <div>
+                <span id="detailMenuCategory" class="text-[10px] font-extrabold uppercase tracking-wider bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full">Western</span>
+                <h3 id="detailMenuName" class="text-lg font-extrabold text-slate-900 mt-2">Chicken Steak</h3>
+                <div id="detailMenuPrice" class="text-amber-700 font-extrabold font-mono text-base mt-0.5">Rp 28.000</div>
+            </div>
+            <p id="detailMenuDesc" class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-2xl border border-slate-200 text-left">
+                Deskripsi lengkap menu hidangan...
+            </p>
+            <button onclick="closeMenuDetailModal()" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs py-3 rounded-2xl transition cursor-pointer">
+                Tutup Detail
+            </button>
+        </div>
+    </div>
+
+    <div id="ticketModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
+        <div class="bg-white border border-slate-200 rounded-3xl p-6 max-w-sm w-full shadow-2xl text-center space-y-4">
+            <div class="w-16 h-16 bg-amber-50 text-amber-600 border border-amber-200 rounded-full flex items-center justify-center text-3xl mx-auto shadow-inner">
                 <i class="fa-solid fa-check"></i>
             </div>
             <div>
                 <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Kode Antrean Anda</span>
-                <h3 id="ticketCodeText" class="text-4xl font-black text-slate-900 my-1 font-mono">A-001</h3>
-                <p class="text-xs text-slate-600">Pesanan berhasil dikirim ke layar kasir!</p>
+                <h3 id="ticketCodeText" class="text-4xl font-black text-slate-900 my-1 font-mono">V-001</h3>
+                <p class="text-xs text-slate-500">Pesanan berhasil dikirim ke layar kasir!</p>
             </div>
-            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-3 text-xs text-amber-900 text-left">
-                <i class="fa-solid fa-circle-info text-orange-600 mr-1"></i> Silakan datang ke kasir dan sebutkan kode antrean untuk melakukan pembayaran.
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-3 text-xs text-slate-700 text-left">
+                <i class="fa-solid fa-circle-info text-amber-600 mr-1"></i> Silakan datang ke kasir dan sebutkan kode antrean untuk melakukan pembayaran.
             </div>
-            <button onclick="closeTicketModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs py-3.5 rounded-2xl transition cursor-pointer">
+            <button onclick="closeTicketModal()" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs py-3.5 rounded-2xl transition cursor-pointer">
                 Selesai / Pesan Lagi
             </button>
         </div>
     </div>
 
-    <!-- TOAST NOTIFICATION -->
     <div id="toastContainer" class="fixed top-16 right-4 z-50 flex flex-col gap-2 max-w-xs w-full pointer-events-none"></div>
 
     <script>
         const MENUS = [
-            { id: 'm1', name: 'Mie Hompimpa Level 1', category: 'Mie & Utama', price: 11000, emoji: '🍜', desc: 'Gurih asin pedas ringan nikmat' },
-            { id: 'm2', name: 'Mie Gacoan Level 3', category: 'Mie & Utama', price: 11000, emoji: '🍝', desc: 'Manis pedas favorit paling laris' },
-            { id: 'm3', name: 'Nasi Ayam Geprek Sambal Korek', category: 'Mie & Utama', price: 15000, emoji: '🍗', desc: 'Ayam krispi + nasi hangat + lalapan' },
-            { id: 'm4', name: 'Udang Keju Lumer (Isi 3)', category: 'Dimsum & Camilan', price: 10000, emoji: '🍤', desc: 'Udang crispy isi keju meleleh' },
-            { id: 'm5', name: 'Siomay Ayam Kukus (Isi 3)', category: 'Dimsum & Camilan', price: 9500, emoji: '🥟', desc: 'Lembut dengan saus sambal spesial' },
-            { id: 'm6', name: 'Lumpia Udang Kulit Tahu', category: 'Dimsum & Camilan', price: 10000, emoji: '🌯', desc: 'Renyah gurih cocok buat teman mie' },
-            { id: 'm7', name: 'Es Gobak Sodor Jelly Buah', category: 'Minuman', price: 9500, emoji: '🍹', desc: 'Segar manis penuh potongan buah & cincau' },
-            { id: 'm8', name: 'Es Teh Manis Jumbo', category: 'Minuman', price: 5000, emoji: '🧋', desc: 'Teh melati asli porsi gelas besar' },
-            { id: 'm9', name: 'Es Kopi Susu Gula Aren', category: 'Minuman', price: 12000, emoji: '☕', desc: 'Espresso robusta lokal + susu creamy' }
+            { id: 'm1', name: 'Nasi Goreng Spesial Telur', category: 'Makanan Utama', price: 20000, emoji: '🍳', desc: 'Nasi goreng gurih dengan suwiran ayam, bakso, dan telur dadar' },
+            { id: 'm2', name: 'Ayam Goreng Penyet Sambal Bajak', category: 'Makanan Utama', price: 22000, emoji: '🍗', desc: 'Ayam goreng empuk disajikan dengan sambal bajak khas & lalapan' },
+            { id: 'm3', name: 'Mie Goreng Tek-Tek Jawa', category: 'Makanan Utama', price: 18000, emoji: '🍜', desc: 'Mie goreng kampung gurih dengan kubis, kol, dan potongan bakso' },
+            { id: 'm4', name: 'Chicken Steak Crispy Saus Jamur', category: 'Western', price: 28000, emoji: '🥩', desc: 'Daging ayam crispy dengan siraman saus jamur hangat & kentang goreng' },
+            { id: 'm5', name: 'Beef Burger Keju Meleleh', category: 'Western', price: 25000, emoji: '🍔', desc: 'Burger daging sapi juicy dengan keju leleh dan selada segar' },
+            { id: 'm6', name: 'Kentang Goreng & Sosis', category: 'Camilan', price: 15000, emoji: '🍟', desc: 'Camilan gurih pas untuk teman santai bersama keluarga' },
+            { id: 'm7', name: 'Es Teh Manis Melati', category: 'Minuman', price: 5000, emoji: '🧊', desc: 'Teh melati manis segar dingin' },
+            { id: 'm8', name: 'Es Jeruk Peras Murni', category: 'Minuman', price: 7000, emoji: '🍊', desc: 'Jeruk segar pilihan diperas langsung' },
+            { id: 'm9', name: 'Kopi Susu Gula Aren', category: 'Minuman', price: 15000, emoji: '☕', desc: 'Kopi susu creamy dengan manis gula aren asli' }
         ];
 
         let cart = {};
         let activeCategory = 'Semua';
         let currentMode = 'customer';
         let cashierTab = 'pending';
-        let restoName = 'Mie & Kopi Juara';
-        let tableNumber = 'Meja 04';
-        let kasirWhatsAppNumber = '6281234567890';
+        let restoName = 'Bistro & Dine Luxe';
+        let tableNumber = '15';
         let ordersData = [];
 
         window.formatRp = function(num) {
@@ -244,8 +266,8 @@
             const container = document.getElementById('toastContainer');
             if (!container) return;
             const toast = document.createElement('div');
-            toast.className = 'bg-slate-900 text-white p-3.5 rounded-2xl shadow-2xl text-xs font-bold flex items-center gap-2.5 pointer-events-auto transition-all duration-300';
-            toast.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400 text-sm"></i><div>${message}</div>`;
+            toast.className = 'bg-slate-900 border border-slate-700 text-white p-3.5 rounded-2xl shadow-2xl text-xs font-bold flex items-center gap-2.5 pointer-events-auto transition-all duration-300';
+            toast.innerHTML = `<i class="fa-solid fa-circle-check text-amber-500 text-sm"></i><div>${message}</div>`;
             container.appendChild(toast);
             setTimeout(() => {
                 toast.style.opacity = '0';
@@ -264,33 +286,34 @@
             if (mode === 'customer') {
                 custView.classList.remove('hidden');
                 cashView.classList.add('hidden');
-                btnCust.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-orange-600 text-white shadow-sm cursor-pointer';
-                btnCash.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white cursor-pointer';
+                btnCust.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-amber-500 text-slate-950 shadow-sm cursor-pointer';
+                btnCash.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-slate-900 cursor-pointer';
             } else {
                 custView.classList.add('hidden');
                 cashView.classList.remove('hidden');
-                btnCash.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-emerald-600 text-white shadow-sm cursor-pointer';
-                btnCust.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white cursor-pointer';
+                btnCash.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-amber-500 text-slate-950 shadow-sm cursor-pointer';
+                btnCust.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-slate-900 cursor-pointer';
                 loadDemoOrders();
                 renderCashierOrders();
             }
         }
 
         function loadDemoOrders() {
-            const saved = localStorage.getItem('umkm_pos_demo_orders');
+            const saved = localStorage.getItem('luxe_pos_demo_orders');
             if (saved) {
                 try { ordersData = JSON.parse(saved); } catch(e) { ordersData = []; }
             } else {
-                // Contoh pesanan awal demo
                 ordersData = [
                     {
                         id: 'demo_1',
-                        code: 'A-001',
-                        customerName: 'Kak Siti',
-                        table: 'Meja 02',
-                        notes: 'Tidak pakai pedas',
-                        items: [{ id: 'm1', name: 'Mie Hompimpa Level 1', price: 11000, qty: 1 }, { id: 'm8', name: 'Es Teh Manis Jumbo', price: 5000, qty: 1 }],
-                        total: 16000,
+                        code: 'V-001',
+                        customerName: 'Bapak Joko',
+                        table: '15',
+                        notes: 'Sambal dipisah',
+                        items: [{ id: 'm1', name: 'Nasi Goreng Spesial Telur', price: 20000, qty: 1 }, { id: 'm7', name: 'Es Teh Manis Melati', price: 5000, qty: 1 }],
+                        subtotal: 25000,
+                        tax: 2750,
+                        total: 27750,
                         status: 'pending',
                         createdAt: Date.now() - 100000
                     }
@@ -301,12 +324,12 @@
         }
 
         function saveDemoOrders() {
-            localStorage.setItem('umkm_pos_demo_orders', JSON.stringify(ordersData));
+            localStorage.setItem('luxe_pos_demo_orders', JSON.stringify(ordersData));
             updateCashierBadges();
         }
 
         window.resetDemoOrders = function() {
-            localStorage.removeItem('umkm_pos_demo_orders');
+            localStorage.removeItem('luxe_pos_demo_orders');
             loadDemoOrders();
             renderCashierOrders();
             window.showToast('Data demo direset ke awal!');
@@ -316,17 +339,15 @@
             const params = new URLSearchParams(window.location.search);
             const restoParam = params.get('resto');
             const mejaParam = params.get('meja');
-            const waParam = params.get('wa');
 
             if (restoParam) {
                 restoName = restoParam;
                 document.getElementById('headerRestoName').textContent = restoName;
             }
             if (mejaParam) {
-                tableNumber = 'Meja ' + mejaParam;
+                tableNumber = mejaParam;
                 document.getElementById('tableLabel').textContent = tableNumber;
             }
-            if (waParam) kasirWhatsAppNumber = waParam;
 
             loadDemoOrders();
             renderCategories();
@@ -334,14 +355,14 @@
         }
 
         function renderCategories() {
-            const categories = ['Semua', 'Mie & Utama', 'Dimsum & Camilan', 'Minuman'];
+            const categories = ['Semua', 'Makanan Utama', 'Western', 'Camilan', 'Minuman'];
             const container = document.getElementById('categoryBar');
             if (!container) return;
             container.innerHTML = categories.map(cat => {
                 const isActive = activeCategory === cat;
                 return `
                     <button onclick="window.setCategory('${cat}')" 
-                        class="px-3.5 py-1.5 rounded-xl font-bold text-xs whitespace-nowrap transition cursor-pointer ${isActive ? 'bg-white text-orange-600 shadow-sm' : 'bg-black/20 text-white hover:bg-black/30'}">
+                        class="px-3.5 py-1.5 rounded-xl font-bold text-xs whitespace-nowrap transition cursor-pointer ${isActive ? 'bg-amber-500 text-slate-950 shadow-sm' : 'bg-white/10 text-white hover:bg-white/20 border border-white/10'}">
                         ${cat}
                     </button>
                 `;
@@ -362,25 +383,36 @@
             container.innerHTML = filtered.map(item => {
                 const qty = cart[item.id] || 0;
                 return `
-                    <div class="bg-white rounded-2xl p-3.5 border ${qty > 0 ? 'border-orange-500 ring-1 ring-orange-500/20' : 'border-slate-200'} shadow-xs flex items-center gap-3.5 transition">
-                        <div class="w-16 h-16 rounded-2xl bg-orange-50 border border-orange-100 flex items-center justify-center text-3xl shrink-0">
+                    <div class="bg-white rounded-2xl p-3.5 border ${qty > 0 ? 'border-amber-500 ring-1 ring-amber-500/20' : 'border-slate-200'} shadow-xs flex items-center gap-3.5 transition">
+                        <!-- ZOOM BUTTON & IMAGE PREVIEW -->
+                        <div class="w-16 h-16 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-3xl shrink-0 relative group cursor-pointer shadow-inner" onclick="openMenuDetail('${item.id}')">
                             ${item.emoji}
+                            <div class="absolute inset-0 bg-slate-950/50 rounded-2xl opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs">
+                                <i class="fa-solid fa-magnifying-glass-plus"></i>
+                            </div>
                         </div>
+
                         <div class="flex-1 min-w-0">
-                            <div class="font-extrabold text-sm text-slate-800 truncate">${item.name}</div>
-                            <div class="text-xs text-slate-400 line-clamp-1 mt-0.5">${item.desc}</div>
-                            <div class="font-extrabold text-xs sm:text-sm text-orange-600 mt-1 font-mono">${window.formatRp(item.price)}</div>
+                            <div class="font-extrabold text-sm text-slate-900 truncate">${item.name}</div>
+                            <div class="text-xs text-slate-500 line-clamp-1 mt-0.5">${item.desc}</div>
+                            <div class="flex items-center gap-2 mt-1">
+                                <span class="font-extrabold text-xs sm:text-sm text-amber-700 font-mono">${window.formatRp(item.price)}</span>
+                                <button onclick="openMenuDetail('${item.id}')" class="bg-amber-100 hover:bg-amber-200 text-amber-900 text-[11px] font-extrabold px-2 py-0.5 rounded-lg flex items-center gap-1 transition cursor-pointer">
+                                    <i class="fa-solid fa-circle-info"></i> Detail
+                                </button>
+                            </div>
                         </div>
+
                         <div class="shrink-0">
                             ${qty === 0 ? `
-                                <button onclick="window.updateCart('${item.id}', 1)" class="bg-orange-50 hover:bg-orange-600 hover:text-white text-orange-600 border border-orange-200 font-extrabold text-xs px-3.5 py-2.5 rounded-xl transition active:scale-90 cursor-pointer">
-                                    + Tambah
+                                <button onclick="window.updateCart('${item.id}', 1)" class="bg-slate-100 hover:bg-amber-500 hover:text-slate-950 text-slate-800 border border-slate-200 font-extrabold text-xs px-3.5 py-2.5 rounded-xl transition active:scale-90 cursor-pointer">
+                                    + Pilih
                                 </button>
                             ` : `
-                                <div class="flex items-center gap-2 bg-orange-50 border border-orange-200 rounded-xl p-1">
-                                    <button onclick="window.updateCart('${item.id}', -1)" class="w-7 h-7 rounded-lg bg-white text-slate-700 font-extrabold text-xs shadow-xs flex items-center justify-center active:scale-90 cursor-pointer">-</button>
-                                    <span class="font-extrabold text-xs text-orange-700 w-5 text-center">${qty}</span>
-                                    <button onclick="window.updateCart('${item.id}', 1)" class="w-7 h-7 rounded-lg bg-orange-600 text-white font-extrabold text-xs shadow-xs flex items-center justify-center active:scale-90 cursor-pointer">+</button>
+                                <div class="flex items-center gap-2 bg-slate-100 border border-slate-200 rounded-xl p-1">
+                                    <button onclick="window.updateCart('${item.id}', -1)" class="w-7 h-7 rounded-lg bg-white text-slate-900 font-extrabold text-xs shadow-xs flex items-center justify-center active:scale-90 cursor-pointer">-</button>
+                                    <span class="font-extrabold text-xs text-amber-700 w-5 text-center">${qty}</span>
+                                    <button onclick="window.updateCart('${item.id}', 1)" class="w-7 h-7 rounded-lg bg-amber-500 text-slate-950 font-extrabold text-xs shadow-xs flex items-center justify-center active:scale-90 cursor-pointer">+</button>
                                 </div>
                             `}
                         </div>
@@ -389,6 +421,23 @@
             }).join('');
 
             renderCartBar();
+        }
+
+        window.openMenuDetail = function(menuId) {
+            const item = MENUS.find(m => m.id === menuId);
+            if (!item) return;
+            document.getElementById('detailMenuEmoji').textContent = item.emoji;
+            document.getElementById('detailMenuCategory').textContent = item.category;
+            document.getElementById('detailMenuName').textContent = item.name;
+            document.getElementById('detailMenuPrice').textContent = window.formatRp(item.price);
+            document.getElementById('detailMenuDesc').textContent = item.desc;
+            document.getElementById('menuDetailModal').classList.remove('hidden');
+            document.getElementById('menuDetailModal').classList.add('flex');
+        }
+
+        window.closeMenuDetailModal = function() {
+            document.getElementById('menuDetailModal').classList.add('hidden');
+            document.getElementById('menuDetailModal').classList.remove('flex');
         }
 
         window.updateCart = function(menuId, delta) {
@@ -400,22 +449,24 @@
         }
 
         function getCartSummary() {
-            let count = 0, total = 0;
+            let count = 0, subtotal = 0;
             const items = [];
             Object.keys(cart).forEach(id => {
                 const menu = MENUS.find(m => m.id === id);
                 if (menu) {
                     const qty = cart[id];
                     count += qty;
-                    total += menu.price * qty;
+                    subtotal += menu.price * qty;
                     items.push({ id: menu.id, name: menu.name, price: menu.price, qty });
                 }
             });
-            return { count, total, items };
+            return { count, subtotal, items };
         }
 
         function renderCartBar() {
-            const { count, total } = getCartSummary();
+            const { count, subtotal } = getCartSummary();
+            const tax = Math.round(subtotal * 0.11);
+            const total = subtotal + tax;
             const bar = document.getElementById('cartBar');
             if (!bar) return;
             if (count > 0) {
@@ -428,7 +479,7 @@
         }
 
         window.openCheckoutModal = function() {
-            const { items, total } = getCartSummary();
+            const { items, subtotal } = getCartSummary();
             if (items.length === 0) return;
 
             const container = document.getElementById('checkoutItemsList');
@@ -439,7 +490,13 @@
                 </div>
             `).join('');
 
+            const tax = Math.round(subtotal * 0.11);
+            const total = subtotal + tax;
+
+            document.getElementById('checkoutSubtotalAmount').textContent = window.formatRp(subtotal);
+            document.getElementById('checkoutTaxAmount').textContent = window.formatRp(tax);
             document.getElementById('checkoutModalTotal').textContent = window.formatRp(total);
+
             document.getElementById('checkoutModal').classList.remove('hidden');
             document.getElementById('checkoutModal').classList.add('flex');
         }
@@ -454,15 +511,17 @@
             const notes = document.getElementById('customerNotes').value.trim();
 
             if (!name) {
-                window.showToast('Mohon masukkan nama pemesan terlebih dahulu!');
+                window.showToast('Mohon masukkan nama tamu terlebih dahulu!');
                 document.getElementById('customerName').focus();
                 return;
             }
 
-            const { items, total } = getCartSummary();
+            const { items, subtotal } = getCartSummary();
             if (items.length === 0) return;
 
-            const orderCode = 'A-' + Math.floor(100 + Math.random() * 900);
+            const tax = Math.round(subtotal * 0.11);
+            const total = subtotal + tax;
+            const orderCode = 'V-' + Math.floor(100 + Math.random() * 900);
 
             const orderData = {
                 id: 'local_' + Date.now(),
@@ -471,6 +530,8 @@
                 table: tableNumber,
                 notes: notes || '-',
                 items: items,
+                subtotal: subtotal,
+                tax: tax,
                 total: total,
                 status: 'pending',
                 createdAt: Date.now()
@@ -494,24 +555,6 @@
             document.getElementById('ticketModal').classList.remove('flex');
         }
 
-        window.submitOrderToWhatsApp = function() {
-            const name = document.getElementById('customerName').value.trim();
-            const notes = document.getElementById('customerNotes').value.trim();
-            if (!name) {
-                window.showToast('Mohon masukkan nama pemesan!');
-                return;
-            }
-            const { items, total } = getCartSummary();
-            let message = `*PESANAN BARU - ${restoName.toUpperCase()}*\nPelanggan: *${name}*\nLokasi: *${tableNumber}*\n`;
-            if (notes) message += `Catatan: "${notes}"\n`;
-            message += `----------------------------------\n`;
-            items.forEach(i => { message += `• ${i.qty}x ${i.name} (${window.formatRp(i.price * i.qty)})\n`; });
-            message += `----------------------------------\n*TOTAL: ${window.formatRp(total)}*\n\nSegera diproses ya kak, terima kasih!`;
-
-            window.open(`https://wa.me/${kasirWhatsAppNumber}?text=${encodeURIComponent(message)}`, '_blank');
-            window.closeCheckoutModal();
-        }
-
         // ================= KASIR POS LOGIC =================
         window.setCashierTab = function(tab) {
             cashierTab = tab;
@@ -521,7 +564,7 @@
                 if (t === tab) {
                     btn.className = 'px-4 py-2 rounded-xl text-xs font-extrabold transition bg-rose-600 text-white shadow-sm cursor-pointer';
                 } else {
-                    btn.className = 'px-4 py-2 rounded-xl text-xs font-extrabold transition bg-white text-slate-600 border border-slate-200 cursor-pointer';
+                    btn.className = 'px-4 py-2 rounded-xl text-xs font-extrabold transition bg-white text-slate-700 border border-slate-200 cursor-pointer';
                 }
             });
             renderCashierOrders();
@@ -555,7 +598,7 @@
             if (filtered.length === 0) {
                 container.innerHTML = `
                     <div class="col-span-full py-16 text-center text-slate-400 text-xs bg-white rounded-2xl border border-slate-200">
-                        <i class="fa-solid fa-clipboard-check text-3xl mb-2 text-slate-300"></i>
+                        <i class="fa-solid fa-clipboard-check text-3xl mb-2 text-slate-400"></i>
                         <div>Tidak ada pesanan dengan status ini.</div>
                     </div>
                 `;
@@ -569,13 +612,13 @@
                         <div>
                             <div class="flex items-center justify-between pb-2 border-b border-slate-100">
                                 <div class="flex items-center gap-2">
-                                    <span class="font-mono font-black text-base bg-slate-900 text-white px-2.5 py-1 rounded-lg">${order.code}</span>
+                                    <span class="font-mono font-black text-base bg-amber-500 text-slate-950 px-2.5 py-1 rounded-lg">${order.code}</span>
                                     <div>
                                         <div class="font-extrabold text-sm text-slate-900">${order.customerName}</div>
-                                        <div class="text-[11px] text-slate-400">${order.table} • ${timeString}</div>
+                                        <div class="text-[11px] text-slate-500">Meja ${order.table} • ${timeString}</div>
                                     </div>
                                 </div>
-                                <span class="text-xs font-bold text-orange-600 bg-orange-50 px-2.5 py-1 rounded-lg font-mono">${window.formatRp(order.total)}</span>
+                                <span class="text-xs font-bold text-amber-700 bg-slate-100 px-2.5 py-1 rounded-lg font-mono border border-slate-200">${window.formatRp(order.total)}</span>
                             </div>
 
                             <div class="py-2.5 space-y-1 text-xs">
@@ -585,10 +628,14 @@
                                         <span class="font-mono text-slate-500">${window.formatRp(i.price * i.qty)}</span>
                                     </div>
                                 `).join('')}
+                                <div class="flex items-center justify-between text-slate-500 pt-1 border-t border-slate-100 text-[11px]">
+                                    <span>PPN (11%)</span>
+                                    <span>+ ${window.formatRp(order.tax)}</span>
+                                </div>
                             </div>
 
                             ${order.notes && order.notes !== '-' ? `
-                                <div class="bg-amber-50 border border-amber-200 rounded-xl p-2 text-[11px] text-amber-900">
+                                <div class="bg-amber-50 border border-amber-200 rounded-xl p-2 text-[11px] text-amber-800">
                                     <b>Catatan:</b> ${order.notes}
                                 </div>
                             ` : ''}
@@ -604,7 +651,7 @@
                                     <i class="fa-solid fa-flag-checkered mr-1"></i> Selesaikan Pesanan
                                 </button>
                             ` : `
-                                <div class="w-full text-center text-xs font-bold text-emerald-600 py-2 bg-emerald-50 rounded-xl">
+                                <div class="w-full text-center text-xs font-bold text-emerald-700 py-2 bg-emerald-50 border border-emerald-200 rounded-xl">
                                     <i class="fa-solid fa-circle-check mr-1"></i> Selesai & Lunas
                                 </div>
                             `}
