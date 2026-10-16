@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital E-Menu Solusi Restoran Modern — Karsalana Lab</title>
-    <!-- Favicon dari Root -->
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
-    <!-- Font Plus Jakarta Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- CSS Terpusat -->
     <link rel="stylesheet" href="../assets/css/style.css">
     <style>
         .pricing-grid {
@@ -18,7 +15,6 @@
             margin-top: 30px;
             margin-bottom: 60px;
         }
-
         .pricing-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -30,12 +26,10 @@
             justify-content: space-between;
             position: relative;
         }
-
         .pricing-card.featured {
             border-color: var(--primary);
             box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.2);
         }
-
         .pricing-badge {
             position: absolute;
             top: -12px;
@@ -48,19 +42,16 @@
             border-radius: 20px;
             text-transform: uppercase;
         }
-
         .price {
             font-size: 2rem;
             font-weight: 700;
             color: var(--text-main);
             margin: 15px 0 20px 0;
         }
-
         .pricing-features {
             list-style: none;
             margin-bottom: 30px;
         }
-
         .pricing-features li {
             color: var(--text-muted);
             font-size: 0.95rem;
@@ -73,18 +64,8 @@
 </head>
 <body>
 
-    <!-- Header Manual yang Pasti Aman Tanpa Fetch -->
-    <header>
-        <a href="../" class="logo-container">
-            <img src="../favicon.ico" alt="Karsalana Logo" style="width: 28px; height: 28px; object-fit: contain;">
-            <span class="logo-text">Karsalana<span>.Lab</span></span>
-        </a>
-        <nav>
-            <a href="../#demos">Live Demos</a>
-            <a href="../#services">Layanan</a>
-            <a href="https://wa.me/" target="_blank">Kontak</a>
-        </nav>
-    </header>
+    <!-- Header Otomatis Dimuat dari Script -->
+    <header id="site-header"></header>
 
     <!-- Content Wrapper -->
     <div class="wrapper">
@@ -125,7 +106,6 @@
         </div>
 
         <div class="pricing-grid">
-            <!-- Paket Starter -->
             <div class="pricing-card">
                 <div>
                     <h3>Starter Menu</h3>
@@ -141,12 +121,11 @@
                 <a href="https://wa.me/?text=Halo%2C%20saya%20tertarik%20dengan%20Paket%20Starter%20E-Menu" target="_blank" class="btn-primary" style="text-align: center; display: block;">Pilih Paket Ini</a>
             </div>
 
-            <!-- Paket Pro -->
             <div class="pricing-card featured">
                 <div class="pricing-badge">Paling Populer</div>
                 <div>
                     <h3>Business Pro</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">Untuk restoran mapan dengan variasi menu banyak.</p>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">For restoran mapan dengan variasi menu banyak.</p>
                     <div class="price">Rp 750rb <span style="font-size: 0.9rem; font-weight: normal; color: var(--text-muted);">/sekali bayar</span></div>
                     <ul class="pricing-features">
                         <li>✅ Semua fitur Starter</li>
@@ -156,15 +135,15 @@
                         <li>✅ Prioritas revisi & dukungan</li>
                     </ul>
                 </div>
-                <a href="https://wa.me/?text=Halo%2C%20saya%20tertarik%20dengan%20Paket%20Business%20Pro%20E-Menu" target="_blank" class="btn-primary" style="text-align: center; display: block;">Pilih Paket Ini</a>
+                <a href="https://wa.me/?text=Halo%2C%20saya%20tertarik%20dengan%20Paket%20Business%20Pro%20E-Menu" target="_blank" class="btn-primary" style="text-align: block; text-align: center; display: block;">Pilih Paket Ini</a>
             </div>
         </div>
     </div>
 
-    <!-- Footer Manual -->
-    <footer>
-        <p>&copy; 2026 Karsalana Lab. Solusi Digital Bisnis Anda.</p>
-    </footer>
+    <!-- Footer Otomatis Dimuat dari Script -->
+    <footer id="site-footer"></footer>
 
+    <!-- Script Pemuat Modular -->
+    <script src="../assets/js/component-loader.js"></script>
 </body>
 </html>
