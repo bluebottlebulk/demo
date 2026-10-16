@@ -37,10 +37,10 @@
             
             <!-- TOGGLE MODE -->
             <div class="bg-slate-800 p-1 rounded-xl flex items-center gap-1 border border-slate-700">
-                <button onclick="switchMode('customer')" id="modeCustomerBtn" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-orange-600 text-white shadow-sm">
+                <button onclick="switchMode('customer')" id="modeCustomerBtn" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-orange-600 text-white shadow-sm cursor-pointer">
                     <i class="fa-solid fa-mobile-screen mr-1"></i> Pelanggan
                 </button>
-                <button onclick="switchMode('cashier')" id="modeCashierBtn" class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white">
+                <button onclick="switchMode('cashier')" id="modeCashierBtn" class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white cursor-pointer">
                     <i class="fa-solid fa-cash-register mr-1"></i> Kasir POS
                     <span id="cashierBadge" class="ml-1 bg-rose-500 text-white px-1.5 py-0.5 rounded-full text-[10px] hidden">0</span>
                 </button>
@@ -93,7 +93,7 @@
                         <div class="text-base font-extrabold text-slate-900" id="cartTotalText">Rp 0</div>
                     </div>
                 </div>
-                <button onclick="openCheckoutModal()" class="bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white font-extrabold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow-lg shadow-orange-500/30 flex items-center gap-2 active:scale-95 transition">
+                <button onclick="openCheckoutModal()" class="bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white font-extrabold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow-lg shadow-orange-500/30 flex items-center gap-2 active:scale-95 transition cursor-pointer">
                     <span>Lanjut Pesan</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
@@ -112,7 +112,7 @@
                 <div id="dbStatusBadge" class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5">
                     <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span> Menghubungkan DB...
                 </div>
-                <button onclick="refreshOrders()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 p-2 rounded-xl text-xs font-bold" title="Refresh Data">
+                <button onclick="refreshOrders()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 p-2 rounded-xl text-xs font-bold cursor-pointer" title="Refresh Data">
                     <i class="fa-solid fa-rotate-right"></i>
                 </button>
             </div>
@@ -120,13 +120,13 @@
 
         <!-- TAB STATUS PESANAN KASIR -->
         <div class="flex items-center gap-2 mb-4 overflow-x-auto">
-            <button onclick="setCashierTab('pending')" id="tabPending" class="px-4 py-2 rounded-xl text-xs font-extrabold transition bg-rose-600 text-white shadow-sm">
+            <button onclick="setCashierTab('pending')" id="tabPending" class="px-4 py-2 rounded-xl text-xs font-extrabold transition bg-rose-600 text-white shadow-sm cursor-pointer">
                 Baru Masuk (<span id="countPending">0</span>)
             </button>
-            <button onclick="setCashierTab('processing')" id="tabProcessing" class="px-4 py-2 rounded-xl text-xs font-extrabold transition bg-white text-slate-600 border border-slate-200">
+            <button onclick="setCashierTab('processing')" id="tabProcessing" class="px-4 py-2 rounded-xl text-xs font-extrabold transition bg-white text-slate-600 border border-slate-200 cursor-pointer">
                 Diproses Dapur (<span id="countProcessing">0</span>)
             </button>
-            <button onclick="setCashierTab('completed')" id="tabCompleted" class="px-4 py-2 rounded-xl text-xs font-extrabold transition bg-white text-slate-600 border border-slate-200">
+            <button onclick="setCashierTab('completed')" id="tabCompleted" class="px-4 py-2 rounded-xl text-xs font-extrabold transition bg-white text-slate-600 border border-slate-200 cursor-pointer">
                 Selesai / Lunas
             </button>
         </div>
@@ -142,7 +142,7 @@
         <div class="bg-white rounded-t-3xl sm:rounded-3xl p-5 max-w-lg w-full max-h-[90vh] flex flex-col shadow-2xl">
             <div class="flex items-center justify-between pb-3 border-b border-slate-100">
                 <h3 class="font-extrabold text-base text-slate-800">Konfirmasi Pesanan</h3>
-                <button onclick="closeCheckoutModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center">
+                <button onclick="closeCheckoutModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center cursor-pointer">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
@@ -171,11 +171,11 @@
                     <span class="text-xs font-bold text-slate-500">Total Tagihan</span>
                     <span id="checkoutModalTotal" class="text-lg font-extrabold text-orange-600">Rp 0</span>
                 </div>
-                <button onclick="submitOrderToDatabase()" class="w-full bg-orange-600 hover:bg-orange-500 text-white font-extrabold text-sm py-3.5 rounded-2xl shadow-lg shadow-orange-600/30 flex items-center justify-center gap-2 transition active:scale-95">
+                <button onclick="submitOrderToDatabase()" class="w-full bg-orange-600 hover:bg-orange-500 text-white font-extrabold text-sm py-3.5 rounded-2xl shadow-lg shadow-orange-600/30 flex items-center justify-center gap-2 transition active:scale-95 cursor-pointer">
                     <i class="fa-solid fa-paper-plane"></i>
                     <span>Kirim Pesanan ke Kasir</span>
                 </button>
-                <button onclick="submitOrderToWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs py-3 rounded-2xl flex items-center justify-center gap-2 transition">
+                <button onclick="submitOrderToWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs py-3 rounded-2xl flex items-center justify-center gap-2 transition cursor-pointer">
                     <i class="fa-brands fa-whatsapp text-base"></i>
                     <span>Atau Kirim via WhatsApp Kasir</span>
                 </button>
@@ -197,7 +197,7 @@
             <div class="bg-amber-50 border border-amber-200 rounded-2xl p-3 text-xs text-amber-900 text-left">
                 <i class="fa-solid fa-circle-info text-orange-600 mr-1"></i> Silakan datang ke kasir dan sebutkan kode antrean untuk melakukan pembayaran.
             </div>
-            <button onclick="closeTicketModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs py-3.5 rounded-2xl transition">
+            <button onclick="closeTicketModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs py-3.5 rounded-2xl transition cursor-pointer">
                 Selesai / Pesan Lagi
             </button>
         </div>
@@ -212,21 +212,21 @@
         import { getFirestore, collection, addDoc, updateDoc, doc, onSnapshot, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // ==========================================================
-        // GANTI BAGIAN INI DENGAN KONFIGURASI FIREBASE MILIKMU SENDIRI
-        // (Ambil dari Project Settings -> General -> Your apps di Firebase Console)
+        // GANTI DI SINI DENGAN KONFIGURASI FIREBASE MILIKMU SENDIRI
+        // (Atau biarkan menggunakan Local Fallback jika ingin mode offline instan)
         // ==========================================================
         const firebaseConfig = {
             apiKey: "AIzaSyClmAHnYMxFpFb1E8UOpuBRu2P27k6BacI",
-            authDomain: "umkm-demo.firebaseapp.com",
-            projectId: "umkm-demo",
-            storageBucket: "umkm-demo.firebasestorage.app",
-            messagingSenderId: "367487754481",
-            appId: "1:367487754481:web:155de99a18ae2ff69e0950"
-            measurementId: "G-MPDB7PZZDC"
+    authDomain: "umkm-demo.firebaseapp.com",
+    projectId: "umkm-demo",
+    storageBucket: "umkm-demo.firebasestorage.app",
+    messagingSenderId: "367487754481",
+    appId: "1:367487754481:web:155de99a18ae2ff69e0950",
+    measurementId: "G-MPDB7PZZDC"
         };
         const appId = 'umkm-pos-demo';
 
-        let db, auth;
+        let db = null, auth = null;
         let ordersData = [];
 
         const MENUS = [
@@ -255,6 +255,7 @@
 
         window.showToast = function(message) {
             const container = document.getElementById('toastContainer');
+            if (!container) return;
             const toast = document.createElement('div');
             toast.className = 'bg-slate-900 text-white p-3.5 rounded-2xl shadow-2xl text-xs font-bold flex items-center gap-2.5 pointer-events-auto transition-all duration-300';
             toast.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400 text-sm"></i><div>${message}</div>`;
@@ -276,36 +277,36 @@
             if (mode === 'customer') {
                 custView.classList.remove('hidden');
                 cashView.classList.add('hidden');
-                btnCust.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-orange-600 text-white shadow-sm';
-                btnCash.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white';
+                btnCust.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-orange-600 text-white shadow-sm cursor-pointer';
+                btnCash.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white cursor-pointer';
             } else {
                 custView.classList.add('hidden');
                 cashView.classList.remove('hidden');
-                btnCash.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-emerald-600 text-white shadow-sm';
-                btnCust.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white';
+                btnCash.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-emerald-600 text-white shadow-sm cursor-pointer';
+                btnCust.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white cursor-pointer';
                 renderCashierOrders();
             }
         }
 
-        // Inisialisasi Firebase & Auth
+        // Inisialisasi Firebase & Fallback
         async function initFirebase() {
             try {
-                // Periksa apakah konfigurasi masih menggunakan teks bawaan
                 if (firebaseConfig.apiKey.includes("MASUKKAN")) {
-                    throw new Error("API Key Firebase belum diisi.");
+                    throw new Error("API Key belum diset.");
                 }
 
                 const app = initializeApp(firebaseConfig);
                 auth = getAuth(app);
                 db = getFirestore(app);
 
-                // Login anonim untuk akses database
                 await signInAnonymously(auth);
 
-                document.getElementById('dbStatusBadge').className = 'bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5';
-                document.getElementById('dbStatusBadge').innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500"></span> DB Terhubung';
+                const badge = document.getElementById('dbStatusBadge');
+                if (badge) {
+                    badge.className = 'bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5';
+                    badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500"></span> DB Terhubung';
+                }
 
-                // Real-time listener untuk pesanan publik
                 const q = query(collection(db, 'artifacts', appId, 'public', 'data', 'orders'));
                 onSnapshot(q, (snapshot) => {
                     ordersData = [];
@@ -317,14 +318,33 @@
                     if (currentMode === 'cashier') renderCashierOrders();
                 }, (error) => {
                     console.error("Firestore error:", error);
-                    window.showToast("Koneksi database terganggu.");
                 });
 
             } catch (err) {
-                console.error("Firebase init failed:", err);
-                document.getElementById('dbStatusBadge').className = 'bg-rose-100 text-rose-800 text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5';
-                document.getElementById('dbStatusBadge').innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-500"></span> Konfigurasi Firebase Salah';
+                console.warn("Menggunakan Local Storage Mode:", err.message);
+                // Fallback menggunakan localStorage agar tetap interaktif meskipun belum setup Firebase
+                const badge = document.getElementById('dbStatusBadge');
+                if (badge) {
+                    badge.className = 'bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5';
+                    badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-blue-500"></span> Local Mode';
+                }
+                loadLocalOrders();
             }
+        }
+
+        function loadLocalOrders() {
+            const saved = localStorage.getItem('umkm_pos_orders');
+            if (saved) {
+                try { ordersData = JSON.parse(saved); } catch(e) { ordersData = []; }
+            }
+            updateCashierBadges();
+            if (currentMode === 'cashier') renderCashierOrders();
+        }
+
+        function saveLocalOrders() {
+            localStorage.setItem('umkm_pos_orders', JSON.stringify(ordersData));
+            updateCashierBadges();
+            if (currentMode === 'cashier') renderCashierOrders();
         }
 
         function initPage() {
@@ -351,10 +371,11 @@
         function renderCategories() {
             const categories = ['Semua', 'Mie & Utama', 'Dimsum & Camilan', 'Minuman'];
             const container = document.getElementById('categoryBar');
+            if (!container) return;
             container.innerHTML = categories.map(cat => {
                 const isActive = activeCategory === cat;
                 return `
-                    <button onclick="setCategory('${cat}')" 
+                    <button onclick="window.setCategory('${cat}')" 
                         class="px-3.5 py-1.5 rounded-xl font-bold text-xs whitespace-nowrap transition cursor-pointer ${isActive ? 'bg-white text-orange-600 shadow-sm' : 'bg-black/20 text-white hover:bg-black/30'}">
                         ${cat}
                     </button>
@@ -370,6 +391,7 @@
 
         function renderMenuList() {
             const container = document.getElementById('menuList');
+            if (!container) return;
             const filtered = MENUS.filter(m => activeCategory === 'Semua' || m.category === activeCategory);
 
             container.innerHTML = filtered.map(item => {
@@ -386,14 +408,14 @@
                         </div>
                         <div class="shrink-0">
                             ${qty === 0 ? `
-                                <button onclick="updateCart('${item.id}', 1)" class="bg-orange-50 hover:bg-orange-600 hover:text-white text-orange-600 border border-orange-200 font-extrabold text-xs px-3.5 py-2.5 rounded-xl transition active:scale-90">
+                                <button onclick="window.updateCart('${item.id}', 1)" class="bg-orange-50 hover:bg-orange-600 hover:text-white text-orange-600 border border-orange-200 font-extrabold text-xs px-3.5 py-2.5 rounded-xl transition active:scale-90 cursor-pointer">
                                     + Tambah
                                 </button>
                             ` : `
                                 <div class="flex items-center gap-2 bg-orange-50 border border-orange-200 rounded-xl p-1">
-                                    <button onclick="updateCart('${item.id}', -1)" class="w-7 h-7 rounded-lg bg-white text-slate-700 font-extrabold text-xs shadow-xs flex items-center justify-center active:scale-90">-</button>
+                                    <button onclick="window.updateCart('${item.id}', -1)" class="w-7 h-7 rounded-lg bg-white text-slate-700 font-extrabold text-xs shadow-xs flex items-center justify-center active:scale-90 cursor-pointer">-</button>
                                     <span class="font-extrabold text-xs text-orange-700 w-5 text-center">${qty}</span>
-                                    <button onclick="updateCart('${item.id}', 1)" class="w-7 h-7 rounded-lg bg-orange-600 text-white font-extrabold text-xs shadow-xs flex items-center justify-center active:scale-90">+</button>
+                                    <button onclick="window.updateCart('${item.id}', 1)" class="w-7 h-7 rounded-lg bg-orange-600 text-white font-extrabold text-xs shadow-xs flex items-center justify-center active:scale-90 cursor-pointer">+</button>
                                 </div>
                             `}
                         </div>
@@ -430,6 +452,7 @@
         function renderCartBar() {
             const { count, total } = getCartSummary();
             const bar = document.getElementById('cartBar');
+            if (!bar) return;
             if (count > 0) {
                 bar.classList.remove('hidden');
                 document.getElementById('cartCountBadge').textContent = count;
@@ -461,7 +484,6 @@
             document.getElementById('checkoutModal').classList.remove('flex');
         }
 
-        // Kirim Pesanan ke Database (Muncul Real-Time di Kasir)
         window.submitOrderToDatabase = async function() {
             const name = document.getElementById('customerName').value.trim();
             const notes = document.getElementById('customerNotes').value.trim();
@@ -492,7 +514,9 @@
                 if (db) {
                     await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'orders'), orderData);
                 } else {
-                    throw new Error("Database belum terhubung.");
+                    orderData.id = 'local_' + Date.now();
+                    ordersData.unshift(orderData);
+                    saveLocalOrders();
                 }
                 window.closeCheckoutModal();
                 cart = {};
@@ -503,7 +527,7 @@
                 document.getElementById('ticketModal').classList.add('flex');
             } catch (err) {
                 console.error("Gagal kirim pesanan:", err);
-                window.showToast('Gagal mengirim pesanan. Periksa konfigurasi database.');
+                window.showToast('Gagal mengirim pesanan.');
             }
         }
 
@@ -535,10 +559,11 @@
             cashierTab = tab;
             ['pending', 'processing', 'completed'].forEach(t => {
                 const btn = document.getElementById('tab' + t.charAt(0).toUpperCase() + t.slice(1));
+                if (!btn) return;
                 if (t === tab) {
-                    btn.className = 'px-4 py-2 rounded-xl text-xs font-extrabold transition bg-rose-600 text-white shadow-sm';
+                    btn.className = 'px-4 py-2 rounded-xl text-xs font-extrabold transition bg-rose-600 text-white shadow-sm cursor-pointer';
                 } else {
-                    btn.className = 'px-4 py-2 rounded-xl text-xs font-extrabold transition bg-white text-slate-600 border border-slate-200';
+                    btn.className = 'px-4 py-2 rounded-xl text-xs font-extrabold transition bg-white text-slate-600 border border-slate-200 cursor-pointer';
                 }
             });
             renderCashierOrders();
@@ -548,20 +573,25 @@
             const pendingCount = ordersData.filter(o => o.status === 'pending').length;
             const processingCount = ordersData.filter(o => o.status === 'processing').length;
             
-            document.getElementById('countPending').textContent = pendingCount;
-            document.getElementById('countProcessing').textContent = processingCount;
+            const countPendingEl = document.getElementById('countPending');
+            const countProcessingEl = document.getElementById('countProcessing');
+            if (countPendingEl) countPendingEl.textContent = pendingCount;
+            if (countProcessingEl) countProcessingEl.textContent = processingCount;
             
             const badge = document.getElementById('cashierBadge');
-            if (pendingCount > 0) {
-                badge.textContent = pendingCount;
-                badge.classList.remove('hidden');
-            } else {
-                badge.classList.add('hidden');
+            if (badge) {
+                if (pendingCount > 0) {
+                    badge.textContent = pendingCount;
+                    badge.classList.remove('hidden');
+                } else {
+                    badge.classList.add('hidden');
+                }
             }
         }
 
         window.renderCashierOrders = function() {
             const container = document.getElementById('cashierOrderList');
+            if (!container) return;
             const filtered = ordersData.filter(o => o.status === cashierTab);
 
             if (filtered.length === 0) {
@@ -575,7 +605,7 @@
             }
 
             container.innerHTML = filtered.map(order => {
-                const timeString = new Date(order.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                const timeString = new Date(order.createdAt || Date.now()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                 return `
                     <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-xs flex flex-col justify-between gap-3">
                         <div>
@@ -608,11 +638,11 @@
 
                         <div class="pt-2 border-t border-slate-100 flex items-center gap-2">
                             ${order.status === 'pending' ? `
-                                <button onclick="updateOrderStatus('${order.id}', 'processing')" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs py-2.5 rounded-xl transition shadow-sm">
+                                <button onclick="window.updateOrderStatus('${order.id}', 'processing')" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs py-2.5 rounded-xl transition shadow-sm cursor-pointer">
                                     <i class="fa-solid fa-check mr-1"></i> Terima & Proses Dapur
                                 </button>
                             ` : order.status === 'processing' ? `
-                                <button onclick="updateOrderStatus('${order.id}', 'completed')" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs py-2.5 rounded-xl transition shadow-sm">
+                                <button onclick="window.updateOrderStatus('${order.id}', 'completed')" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs py-2.5 rounded-xl transition shadow-sm cursor-pointer">
                                     <i class="fa-solid fa-flag-checkered mr-1"></i> Selesaikan Pesanan
                                 </button>
                             ` : `
@@ -632,8 +662,14 @@
                     await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'orders', orderId), {
                         status: newStatus
                     });
-                    window.showToast('Status pesanan diperbarui!');
+                } else {
+                    const idx = ordersData.findIndex(o => o.id === orderId);
+                    if (idx !== -1) {
+                        ordersData[idx].status = newStatus;
+                        saveLocalOrders();
+                    }
                 }
+                window.showToast('Status pesanan diperbarui!');
             } catch (err) {
                 console.error("Gagal update status:", err);
                 window.showToast('Gagal memperbarui status pesanan.');
@@ -641,8 +677,8 @@
         }
 
         window.refreshOrders = function() {
-            window.showToast('Memperbarui data kasir...');
-            initFirebase();
+            window.showToast('Memperbarui data...');
+            if (!db) loadLocalOrders();
         }
 
         window.onload = initPage;
