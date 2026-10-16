@@ -3,45 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karsalana Lab — Jasa Pembuatan Website & Web App</title>
+    <title>Karsalana Lab — Jasa Pembuatan Website & Web App Profesional</title>
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Panggil CSS Terpusat -->
     <link rel="stylesheet" href="./assets/css/style.css">
+    <style>
+        /* Tambahan styling khusus untuk section konten baru */
+        .glow-bg {
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 700px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .steps-grid, .features-grid, .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+
+        .step-card, .feature-box, .pricing-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .step-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            opacity: 0.8;
+        }
+
+        /* FAQ Accordion Styling */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .faq-item h4 {
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .faq-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* CTA Banner Bawah */
+        .bottom-cta {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: #ffffff;
+            border-radius: 16px;
+            padding: 50px 30px;
+            text-align: center;
+            margin: 80px 0 40px 0;
+        }
+
+        .bottom-cta h2 {
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-size: 2rem;
+        }
+
+        .bottom-cta p {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+        }
+
+        .btn-whatsapp {
+            display: inline-block;
+            background-color: #22c55e;
+            color: #ffffff;
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 14px rgba(34, 197, 94, 0.4);
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .btn-whatsapp:hover {
+            opacity: 0.95;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <body>
+
+    <div class="glow-bg"></div>
 
     <!-- Header Otomatis Dimuat -->
     <header id="site-header"></header>
 
     <!-- Hero Section -->
-    <section class="hero" style="padding-top: 140px; text-align: center; max-width: 800px; margin: 0 auto;">
+    <section class="hero" style="padding-top: 140px; text-align: center; max-width: 850px; margin: 0 auto; position: relative;">
         <span class="badge">🚀 Karsalana Lab Development</span>
-        <h1 style="font-size: 3rem; margin-bottom: 20px;">Solusi Pembuatan Website Profesional & Fungsional</h1>
-        <p style="color: var(--text-muted); margin-bottom: 35px; font-size: 1.1rem;">Wujudkan sistem digital, profil bisnis, atau aplikasi web interaktif untuk bisnismu.</p>
-        <a href="#demos" class="btn-primary">Jelajahi Demo Aplikasi</a>
+        <h1 style="font-size: clamp(2.3rem, 4.5vw, 3.4rem); margin-bottom: 20px; line-height: 1.2;">Solusi Pembuatan Website & Aplikasi Web Profesional</h1>
+        <p style="color: var(--text-muted); margin-bottom: 35px; font-size: 1.15rem;">Wujudkan kehadiran digital bisnismu dengan sistem yang cepat, bersih, tanpa beban plugin berat, dan dirancang khusus sesuai kebutuhanmu.</p>
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <a href="#demos" class="btn-primary">Jelajahi Live Demo</a>
+            <a href="https://wa.me/" target="_blank" style="display: inline-block; background: transparent; color: var(--text-main); border: 1px solid var(--border-color); padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600;">Konsultasi Gratis</a>
+        </div>
     </section>
 
     <!-- Showcase / Demo Section -->
     <section id="demos" class="container">
         <div style="text-align: center; margin-bottom: 40px;">
-            <h2 style="font-size: 2rem; margin-bottom: 10px;">Live Demo & Proyek Web</h2>
-            <p style="color: var(--text-muted);">Coba langsung aplikasi web interaktif buatan Karsalana.</p>
+            <h2 style="font-size: 2.1rem; margin-bottom: 10px;">Live Demo & Proyek Web</h2>
+            <p style="color: var(--text-muted);">Coba langsung simulasi aplikasi web interaktif buatan Karsalana.</p>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
-            <div style="background: var(--card-bg); border: 1px solid var(--border-color); padding: 30px; border-radius: 12px;">
-                <h3 style="margin-bottom: 12px;">Digital E-Menu & Resto</h3>
-                <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">Sistem katalog menu digital interaktif untuk kafe dan restoran.</p>
-                <a href="./e-menu/" style="color: var(--primary); text-decoration: none; font-weight: 600;">Lihat Detail &rarr;</a>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 24px;">
+            <div class="card" style="background: var(--card-bg); border: 1px solid var(--border-color); padding: 30px; border-radius: 14px;">
+                <h3 style="margin-bottom: 12px; font-size: 1.25rem;">Digital E-Menu & Resto</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px;">Sistem katalog menu digital interaktif untuk kafe dan restoran. Pelanggan bisa akses via QR Code tanpa instal aplikasi.</p>
+                <a href="./e-menu/" style="color: var(--primary); text-decoration: none; font-weight: 600;">Lihat Detail & Demo &rarr;</a>
+            </div>
+            <!-- Slot untuk demo berikutnya bisa ditambah di sini -->
+            <div class="card" style="background: var(--card-bg); border: 1px solid var(--border-color); padding: 30px; border-radius: 14px; opacity: 0.7;">
+                <h3 style="margin-bottom: 12px; font-size: 1.25rem;">Undangan Digital Eksklusif</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px;">Segera hadir. Platform undangan pernikahan modern lengkap dengan RSVP dan background audio.</p>
+                <span style="color: var(--text-muted); font-size: 0.9rem; font-weight: 500;">Dalam Pengembangan...</span>
             </div>
         </div>
     </section>
 
+    <!-- Alur Kerja (How It Works) -->
+    <section class="container" style="padding-top: 0;">
+        <div style="text-align: center; margin-bottom: 20px;">
+            <h2 style="font-size: 2.1rem; margin-bottom: 10px;">Bagaimana Cara Kerjanya?</h2>
+            <p style="color: var(--text-muted);">Proses pemesanan yang transparan, terstruktur, dan tidak pakai ribet.</p>
+        </div>
+
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">01</div>
+                <h3 style="margin-bottom: 10px; font-size: 1.15rem;">Konsultasi Kebutuhan</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Diskusikan konsep, referensi desain, dan fitur fungsional apa saja yang kamu perlukan untuk website atau aplikasimu.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">02</div>
+                <h3 style="margin-bottom: 10px; font-size: 1.15rem;">Pengembangan & Demo</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Kami bangun kerangka dan tampilannya. Kamu bisa langsung memantau dan mencoba progres pengerjaannya secara live.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">03</div>
+                <h3 style="margin-bottom: 10px; font-size: 1.15rem;">Peluncuran & Setup</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Website disempurnakan, dihubungkan ke custom domain pilihanmu, dan siap diakses publik untuk mendukung bisnismu.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Standar Teknis & Keunggulan -->
+    <section class="container" style="padding-top: 0;">
+        <div style="text-align: center; margin-bottom: 20px;">
+            <h2 style="font-size: 2.1rem; margin-bottom: 10px;">Standar Kualitas Karsalana</h2>
+            <p style="color: var(--text-muted);">Kenapa kode dan website buatan kami berbeda dari yang lain.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-box">
+                <h3 style="margin-bottom: 10px; font-size: 1.1rem;">⚡ Super Cepat & Ringan</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Dibangun dengan struktur kode murni yang dioptimalkan, tanpa beban *plugin* berat yang bikin loading lambat.</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="margin-bottom: 10px; font-size: 1.1rem;">📱 100% Responsif</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Tampilan dijamin rapi dan optimal saat dibuka lewat smartphone, tablet, maupun komputer desktop.</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="margin-bottom: 10px; font-size: 1.1rem;">🛠️ Perawatan Mudah</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Struktur folder modular memudahkan pemeliharaan, pembaruan konten, atau penambahan fitur di masa mendatang.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="container" style="padding-top: 0;">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <h2 style="font-size: 2.1rem; margin-bottom: 10px;">Pertanyaan yang Sering Diajukan</h2>
+            <p style="color: var(--text-muted);">Hal-hal yang biasa ditanyakan seputar jasa pembuatan website.</p>
+        </div>
+
+        <div class="faq-container">
+            <div class="faq-item">
+                <h4>Apakah domain dan hosting sudah termasuk?</h4>
+                <p>Ya, kami bantu arahkan konfigurasi domain (seperti ekstensi `.my.id`) serta setup hosting menggunakan infrastruktur yang aman dan handal.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Berapa lama proses pengerjaan sebuah website?</h4>
+                <p>Waktu pengerjaan bervariasi tergantung kompleksitas fitur. Untuk landing page sederhana atau e-menu standar biasanya memakan waktu beberapa hari kerja.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Apakah bisa meminta revisi desain?</h4>
+                <p>Tentu saja. Kami menyediakan sesi revisi selama masa pengembangan agar hasil akhirnya benar-benar sesuai dengan ekspektasimu.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom CTA Banner -->
+    <div class="container" style="padding-top: 0; padding-bottom: 0;">
+        <div class="bottom-cta">
+            <h2>Punya Ide Proyek Website Sendiri?</h2>
+            <p>Diskusikan kebutuhanmu sekarang juga dan wujudkan platform digital impianmu bersama Karsalana.</p>
+            <a href="https://wa.me/" target="_blank" class="btn-whatsapp">Chat Konsultasi via WhatsApp</a>
+        </div>
+    </div>
+
     <!-- Footer Otomatis Dimuat -->
     <footer id="site-footer"></footer>
 
-    <!-- Panggil Script Loader -->
     <script src="./assets/js/component-loader.js"></script>
 </body>
 </html>
