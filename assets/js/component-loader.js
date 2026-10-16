@@ -1,9 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Deteksi apakah sedang di root atau di dalam sub-folder (misal: /e-menu/)
-    const isInSubfolder = window.location.pathname.split('/').filter(Boolean).length > 1;
+    // Mengecek apakah URL mengandung sub-folder (misal ada kata "e-menu")
+    const isInSubfolder = window.location.pathname.includes('/e-menu/');
+    
+    // Jika di sub-folder, path root mundur satu langkah (../), jika di utama cukup (./)
     const rootPath = isInSubfolder ? "../" : "./";
 
-    // 1. Template Komponen Header
+    // Template Header dengan path logo yang dinamis
     const headerHTML = `
         <a href="${rootPath}" class="logo-container">
             <img src="${rootPath}favicon.ico" alt="Karsalana Logo" style="width: 28px; height: 28px; object-fit: contain;">
@@ -16,19 +18,13 @@ document.addEventListener("DOMContentLoaded", function() {
         </nav>
     `;
 
-    // 2. Template Komponen Footer
     const footerHTML = `
         <p>&copy; 2026 Karsalana Lab. Solusi Digital Bisnis Anda.</p>
     `;
 
-    // Masukkan ke elemen tujuan di HTML
     const headerElement = document.getElementById("site-header");
-    if (headerElement) {
-        headerElement.innerHTML = headerHTML;
-    }
+    if (headerElement) headerElement.innerHTML = headerHTML;
 
     const footerElement = document.getElementById("site-footer");
-    if (footerElement) {
-        footerElement.innerHTML = footerHTML;
-    }
+    if (footerElement) footerElement.innerHTML = footerHTML;
 });
