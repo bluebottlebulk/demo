@@ -12,16 +12,30 @@
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-blue-500 selection:text-white">
 
-    <!-- Header / Navbar -->
+    <!-- Header / Navbar dengan Logo & Navigasi Mobile yang Lengkap -->
     <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
         <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="../" class="font-bold text-lg tracking-tight bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent flex items-center gap-2">
-                <span>←</span> Karsalana Lab
+            
+            <!-- Logo & Brand -->
+            <a href="../" class="flex items-center gap-2.5 font-bold text-lg tracking-tight group">
+                <div class="w-8 h-8 rounded-lg bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 group-hover:bg-blue-600/30 transition-colors">
+                    <span class="text-sm">⚡</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent leading-tight">Karsalana Lab</span>
+                    <span class="text-[10px] text-slate-400 font-normal tracking-wide">Digital Solutions</span>
+                </div>
             </a>
-            <nav class="hidden md:flex items-center gap-6 text-sm text-slate-300">
-                <a href="#overview" class="hover:text-blue-400 transition-colors">Ringkasan</a>
-                <a href="#features" class="hover:text-blue-400 transition-colors">Fitur Unggulan</a>
-                <a href="./demo/" class="text-blue-400 font-medium hover:underline">Buka Live Demo →</a>
+
+            <!-- Navigasi Desktop & Mobile Links (Lengkap) -->
+            <nav class="flex items-center gap-3 sm:gap-6 text-xs sm:text-sm text-slate-300">
+                <a href="../" class="hover:text-blue-400 transition-colors hidden sm:inline-block">← Beranda Utama</a>
+                <a href="#overview" class="hover:text-blue-400 transition-colors hidden md:inline-block">Ringkasan</a>
+                <a href="#features" class="hover:text-blue-400 transition-colors hidden md:inline-block">Fitur</a>
+                <a href="./demo/" class="px-3.5 py-1.5 rounded-lg bg-blue-600/20 text-blue-400 hover:bg-blue-600/30 border border-blue-500/30 font-medium transition-all flex items-center gap-1.5">
+                    <span>Live Demo</span>
+                    <span>→</span>
+                </a>
             </nav>
         </div>
     </header>
@@ -57,7 +71,7 @@
                     <span class="w-3 h-3 rounded-full bg-yellow-500/80 block"></span>
                     <span class="w-3 h-3 rounded-full bg-green-500/80 block"></span>
                 </div>
-                <div class="mx-auto bg-slate-950/60 px-4 py-1 rounded-md text-xs text-slate-400 font-mono tracking-wider border border-slate-800/50">
+                <div class="mx-auto bg-slate-950/60 px-4 py-1 rounded-md text-xs text-slate-400 font-mono tracking-wider border border-slate-800/50 truncate max-w-[200px] sm:max-w-none">
                     lab.karsalana.my.id/e-menu/demo/
                 </div>
             </div>
