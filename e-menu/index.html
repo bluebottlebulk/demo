@@ -14,20 +14,13 @@
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-blue-500 selection:text-white" x-data="{ mobileMenuOpen: false }">
 
-    <!-- Header / Navbar dengan Hamburger Menu Mobile -->
+    <!-- Header / Navbar dengan Logo Asli & Hamburger Menu Mobile -->
     <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
         <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
             
-            <!-- Logo & Brand (Kiri) -->
-            <a href="../" class="flex items-center gap-2.5 font-bold tracking-tight group">
-                <!-- Jika punya file gambar logo, bisa diganti img tag di sini. Sementara pakai inisial ikon Karsalana -->
-                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
-                    <span class="font-black text-sm tracking-tighter">K</span>
-                </div>
-                <div class="flex flex-col">
-                    <span class="text-base font-extrabold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent leading-none">karsalana</span>
-                    <span class="text-[10px] text-slate-400 font-medium tracking-widest uppercase mt-0.5">Lab & Digital</span>
-                </div>
+            <!-- Logo Asli dari Root Folder (Kiri) -->
+            <a href="../" class="flex items-center gap-2 group">
+                <img src="../Karsalana.png" alt="Karsalana Lab" class="h-7 w-auto object-contain transition-transform group-hover:scale-105">
             </a>
 
             <!-- Navigasi Desktop (Tampil di layar besar) -->
@@ -35,6 +28,7 @@
                 <a href="../" class="hover:text-blue-400 transition-colors">Beranda Utama</a>
                 <a href="#overview" class="hover:text-blue-400 transition-colors">Ringkasan</a>
                 <a href="#features" class="hover:text-blue-400 transition-colors">Fitur</a>
+                <a href="#pricing" class="hover:text-blue-400 transition-colors">Paket & Harga</a>
                 <a href="./demo/" class="px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-500 font-medium transition-all shadow-lg shadow-blue-500/20">
                     Live Demo →
                 </a>
@@ -54,6 +48,7 @@
             <a href="../" @click="mobileMenuOpen = false" class="block text-sm text-slate-300 hover:text-blue-400 font-medium py-1 transition-colors">← Beranda Utama</a>
             <a href="#overview" @click="mobileMenuOpen = false" class="block text-sm text-slate-300 hover:text-blue-400 font-medium py-1 transition-colors">Ringkasan Sistem</a>
             <a href="#features" @click="mobileMenuOpen = false" class="block text-sm text-slate-300 hover:text-blue-400 font-medium py-1 transition-colors">Keunggulan & Fitur</a>
+            <a href="#pricing" @click="mobileMenuOpen = false" class="block text-sm text-slate-300 hover:text-blue-400 font-medium py-1 transition-colors">Pilihan Paket & Harga</a>
             <div class="pt-2 border-t border-slate-800">
                 <a href="./demo/" class="block text-center w-full py-3 rounded-xl bg-blue-600 text-white font-semibold shadow-lg shadow-blue-500/20">
                     Buka Live Demo E-Menu 🚀
@@ -103,4 +98,113 @@
                 <p class="text-slate-400 max-w-lg mx-auto mb-8 text-sm leading-relaxed">
                     Dibangun menggunakan struktur murni yang sangat responsif, memuat kategori makanan secara instan bahkan di jaringan seluler yang terbatas.
                 </p>
-                <a href="./demo/" class="inline-block px-6 py-3 rounded-xl bg-blue-600/20 text-blue-400 hover:bg-blue
+                <a href="./demo/" class="inline-block px-6 py-3 rounded-xl bg-blue-600/20 text-blue-400 hover:bg-blue-600/30 border border-blue-500/30 text-sm font-semibold transition-all">
+                    Buka Halaman Simulasi Menu →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fitur Unggulan E-Menu -->
+    <section id="features" class="py-20 px-6 max-w-6xl mx-auto border-t border-slate-900">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold tracking-tight mb-3">Keunggulan Digital E-Menu</h2>
+            <p class="text-slate-400 max-w-xl mx-auto">Dirancang khusus untuk meningkatkan efisiensi operasional dan pengalaman pelanggan.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="p-6 rounded-2xl bg-slate-900/40 border border-slate-800/80">
+                <div class="text-2xl mb-4">📱</div>
+                <h3 class="font-semibold text-lg mb-2">Akses Tanpa Aplikasi</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Pelanggan hanya perlu membuka kamera HP untuk memindai QR Code di meja tanpa perlu mengunduh aplikasi tambahan.</p>
+            </div>
+            <div class="p-6 rounded-2xl bg-slate-900/40 border border-slate-800/80">
+                <div class="text-2xl mb-4">⚡</div>
+                <h3 class="font-semibold text-lg mb-2">Navigasi Kategori Cepat</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Penyusunan menu berdasarkan kategori (Makanan Utama, Minuman, Dessert, Snack) dilengkapi filter pencarian instan.</p>
+            </div>
+            <div class="p-6 rounded-2xl bg-slate-900/40 border border-slate-800/80">
+                <div class="text-2xl mb-4">🛒</div>
+                <h3 class="font-semibold text-lg mb-2">Simulasi Keranjang & Total</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Fitur keranjang belanja interaktif yang otomatis menghitung total harga pesanan beserta simulasi pajak atau layanan.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daftar Paket & Estimasi Harga -->
+    <section id="pricing" class="py-20 px-6 max-w-6xl mx-auto border-t border-slate-900">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold tracking-tight mb-3">Pilihan Paket & Penawaran</h2>
+            <p class="text-slate-400 max-w-xl mx-auto">Pilih solusi yang paling pas dengan skala bisnis kafe atau restoranmu.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <!-- Paket 1: Standar / Basic -->
+            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-8 flex flex-col justify-between">
+                <div>
+                    <div class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-slate-800 text-slate-300 mb-4">
+                        Paket Starter
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">E-Menu Standar</h3>
+                    <p class="text-slate-400 text-sm mb-6">Cocok untuk kedai kopi atau warung makan yang ingin beralih ke katalog digital praktis.</p>
+                    <ul class="space-y-3 text-sm text-slate-300 mb-8">
+                        <li class="flex items-center gap-2">✓ Katalog menu kategori lengkap</li>
+                        <li class="flex items-center gap-2">✓ Desain responsif HP & Tablet</li>
+                        <li class="flex items-center gap-2">✓ Desain & cetak siap QR Code meja</li>
+                        <li class="flex items-center gap-2">✓ Gratis setup domain kustom</li>
+                    </ul>
+                </div>
+                <div>
+                    <a href="https://wa.me/6280000000000?text=Halo%20Karsalana%20Lab,%20saya%20tertarik%20Paket%20Starter%20E-Menu." target="_blank" class="block text-center py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold transition-colors text-sm">
+                        Pilih Paket Ini
+                    </a>
+                </div>
+            </div>
+
+            <!-- Paket 2: Pro / Custom -->
+            <div class="bg-gradient-to-b from-blue-950/30 to-slate-900/40 border border-blue-500/30 rounded-2xl p-8 flex flex-col justify-between relative shadow-xl shadow-blue-500/5">
+                <div class="absolute -top-3 right-6 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                    Paling Diminati
+                </div>
+                <div>
+                    <div class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-400 mb-4 border border-blue-500/20">
+                        Paket Kustom Bisnis
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">E-Menu + Fitur Order</h3>
+                    <p class="text-slate-400 text-sm mb-6">Solusi lengkap dengan keranjang interaktif, kalkulasi otomatis, dan integrasi langsung ke WhatsApp kasir.</p>
+                    <ul class="space-y-3 text-sm text-slate-300 mb-8">
+                        <li class="flex items-center gap-2">✓ Semua fitur Paket Starter</li>
+                        <li class="flex items-center gap-2">✓ Simulasi keranjang & total harga</li>
+                        <li class="flex items-center gap-2">✓ Tombol kirim pesanan otomatis via WhatsApp</li>
+                        <li class="flex items-center gap-2">✓ Dukungan revisi & pembaruan menu berkala</li>
+                    </ul>
+                </div>
+                <div>
+                    <a href="https://wa.me/6280000000000?text=Halo%20Karsalana%20Lab,%20saya%20tertarik%20Paket%20E-Menu%20Plus%20Fitur%20Order." target="_blank" class="block text-center py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-colors text-sm shadow-lg shadow-blue-500/20">
+                        Konsultasi Paket Pro
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 px-6 max-w-4xl mx-auto text-center">
+        <div class="bg-gradient-to-b from-blue-950/40 to-slate-900/60 border border-blue-500/20 p-10 md:p-14 rounded-3xl relative overflow-hidden">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">Ingin Pasang E-Menu untuk Restoranmu?</h2>
+            <p class="text-slate-300 max-w-xl mx-auto mb-8 text-sm md:text-base leading-relaxed">
+                Tingkatkan gengsi dan kecepatan layanan kafe atau restoranmu sekarang juga dengan sistem menu digital Karsalana.
+            </p>
+            <a href="https://wa.me/6280000000000?text=Halo%20Karsalana%20Lab,%20saya%20mau%20konsultasi%20pembuatan%20Digital%20E-Menu." target="_blank" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-all shadow-lg shadow-blue-500/25">
+                Konsultasi via WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center text-xs text-slate-500 border-t border-slate-900">
+        <p>&copy; 2026 Karsalana Lab. Solusi Digital Bisnis Anda.</p>
+    </footer>
+
+</body>
+</html>
