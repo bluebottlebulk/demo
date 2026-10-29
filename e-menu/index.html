@@ -19,8 +19,11 @@
         <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
             
             <!-- Logo Asli dari Root Folder (Kiri) -->
-            <a href="../" class="flex items-center gap-2 group">
-                <img src="../Karsalana.png" alt="Karsalana Lab" class="h-7 w-auto object-contain transition-transform group-hover:scale-105">
+            <a href="../" class="flex items-center gap-2.5 group">
+                <img src="../Karsalana.png" alt="Karsalana Lab" class="h-7 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.style.display='none'">
+                <span class="font-bold text-lg tracking-tight bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+                    Karsalana Lab
+                </span>
             </a>
 
             <!-- Navigasi Desktop (Tampil di layar besar) -->
@@ -44,13 +47,25 @@
         </div>
 
         <!-- Menu Dropdown Mobile (Muncul saat tombol hamburger diklik) -->
-        <div x-show="mobileMenuOpen" @click.away="mobileMenuOpen = false" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="md:hidden bg-slate-900 border-b border-slate-800 px-6 py-5 space-y-4 shadow-2xl" style="display: none;">
-            <a href="../" @click="mobileMenuOpen = false" class="block text-sm text-slate-300 hover:text-blue-400 font-medium py-1 transition-colors">← Beranda Utama</a>
-            <a href="#overview" @click="mobileMenuOpen = false" class="block text-sm text-slate-300 hover:text-blue-400 font-medium py-1 transition-colors">Ringkasan Sistem</a>
-            <a href="#features" @click="mobileMenuOpen = false" class="block text-sm text-slate-300 hover:text-blue-400 font-medium py-1 transition-colors">Keunggulan & Fitur</a>
-            <a href="#pricing" @click="mobileMenuOpen = false" class="block text-sm text-slate-300 hover:text-blue-400 font-medium py-1 transition-colors">Pilihan Paket & Harga</a>
-            <div class="pt-2 border-t border-slate-800">
-                <a href="./demo/" class="block text-center w-full py-3 rounded-xl bg-blue-600 text-white font-semibold shadow-lg shadow-blue-500/20">
+        <div x-show="mobileMenuOpen" @click.away="mobileMenuOpen = false" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="md:hidden bg-slate-900 border-b border-slate-800 px-6 py-5 space-y-3.5 shadow-2xl" style="display: none;">
+            <a href="../" @click="mobileMenuOpen = false" class="flex items-center justify-between text-sm text-slate-300 hover:text-blue-400 font-medium py-1.5 transition-colors">
+                <span>← Beranda Utama</span>
+                <span class="text-xs text-slate-500">Home</span>
+            </a>
+            <a href="#overview" @click="mobileMenuOpen = false" class="flex items-center justify-between text-sm text-slate-300 hover:text-blue-400 font-medium py-1.5 transition-colors">
+                <span>Ringkasan Sistem</span>
+                <span class="text-xs text-slate-500">→</span>
+            </a>
+            <a href="#features" @click="mobileMenuOpen = false" class="flex items-center justify-between text-sm text-slate-300 hover:text-blue-400 font-medium py-1.5 transition-colors">
+                <span>Keunggulan & Fitur</span>
+                <span class="text-xs text-slate-500">→</span>
+            </a>
+            <a href="#pricing" @click="mobileMenuOpen = false" class="flex items-center justify-between text-sm text-slate-300 hover:text-blue-400 font-medium py-1.5 transition-colors">
+                <span>Pilihan Paket & Harga</span>
+                <span class="text-xs text-slate-500">→</span>
+            </a>
+            <div class="pt-3 border-t border-slate-800">
+                <a href="./demo/" class="block text-center w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold shadow-lg shadow-blue-500/20 transition-all">
                     Buka Live Demo E-Menu 🚀
                 </a>
             </div>
@@ -78,9 +93,9 @@
         </div>
     </section>
 
-    <!-- Browser Mockup Preview Box -->
+    <!-- Browser Mockup Preview Box (Dilengkapi Dual Mini-Mockup UI: Pelanggan & Kasir POS) -->
     <section id="overview" class="py-12 px-6 max-w-5xl mx-auto">
-        <div class="group relative bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
+        <div class="group relative bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 hover:border-blue-500/40">
             <!-- Browser Header Bar -->
             <div class="bg-slate-900 px-4 py-3 flex items-center gap-2 border-b border-slate-800">
                 <div class="flex gap-1.5">
@@ -92,7 +107,107 @@
                     lab.karsalana.my.id/e-menu/demo/
                 </div>
             </div>
-            <!-- Mockup Content Preview Area -->
+
+            <!-- Visual Dual Mini-Mockup Area (Tampilan Pelanggan & Layar Kasir POS) -->
+            <div class="mockup-preview-area relative bg-gradient-to-b from-slate-900/50 to-slate-950/90 border-b border-slate-800/80 p-6 md:p-10 overflow-hidden">
+                <!-- Ambient Glow -->
+                <div class="absolute -top-12 -left-12 w-56 h-56 bg-blue-500/15 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-12 -right-12 w-56 h-56 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative max-w-4xl mx-auto grid md:grid-cols-12 gap-5 items-center">
+                    
+                    <!-- Panel Kiri: Simulasi Layar HP Pelanggan (7 Kolom) -->
+                    <div class="md:col-span-7 mockup-inner-card bg-slate-900/95 border border-slate-800 rounded-2xl p-4 shadow-xl transition-transform duration-300 group-hover:scale-[1.01]">
+                        <!-- Topbar Mode Pelanggan -->
+                        <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800/80">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
+                                <span class="text-xs font-extrabold text-slate-100">Bistro &amp; Dine Luxe</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/30">📱 Mode Pelanggan</span>
+                                <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-slate-800 text-slate-300">Meja 15</span>
+                            </div>
+                        </div>
+
+                        <!-- Bar Kategori Mini -->
+                        <div class="flex items-center gap-1.5 mb-3 overflow-hidden">
+                            <span class="text-[10px] font-bold px-2.5 py-1 rounded-lg bg-blue-600 text-white">Semua</span>
+                            <span class="mockup-item-row text-[10px] font-semibold px-2.5 py-1 rounded-lg bg-slate-950/80 text-slate-400 border border-slate-800">Makanan Utama</span>
+                            <span class="mockup-item-row text-[10px] font-semibold px-2.5 py-1 rounded-lg bg-slate-950/80 text-slate-400 border border-slate-800">Western</span>
+                            <span class="mockup-item-row text-[10px] font-semibold px-2.5 py-1 rounded-lg bg-slate-950/80 text-slate-400 border border-slate-800 hidden sm:inline-block">Minuman</span>
+                        </div>
+
+                        <!-- Daftar Item Menu Mini -->
+                        <div class="space-y-2 mb-3">
+                            <div class="mockup-item-row flex items-center justify-between bg-slate-950/70 border border-slate-800/80 rounded-xl p-2.5">
+                                <div class="flex items-center gap-2.5">
+                                    <span class="w-8 h-8 rounded-lg bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-base">🍳</span>
+                                    <div class="text-left">
+                                        <div class="text-xs font-bold text-slate-200 leading-tight">Nasi Goreng Spesial Telur</div>
+                                        <div class="text-[10px] font-mono text-amber-400 font-semibold">Rp 20.000</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1.5 bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-[10px] font-bold text-slate-300">
+                                    <span>-</span><span class="text-amber-400 px-1">1</span><span>+</span>
+                                </div>
+                            </div>
+
+                            <div class="mockup-item-row flex items-center justify-between bg-slate-950/70 border border-slate-800/80 rounded-xl p-2.5">
+                                <div class="flex items-center gap-2.5">
+                                    <span class="w-8 h-8 rounded-lg bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-base">🥩</span>
+                                    <div class="text-left">
+                                        <div class="text-xs font-bold text-slate-200 leading-tight">Chicken Steak Crispy Saus Jamur</div>
+                                        <div class="text-[10px] font-mono text-amber-400 font-semibold">Rp 28.000</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1.5 bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-[10px] font-bold text-slate-300">
+                                    <span>-</span><span class="text-amber-400 px-1">1</span><span>+</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Floating Cart Bar -->
+                        <div class="flex items-center justify-between bg-blue-600 text-white rounded-xl px-3.5 py-2 text-xs font-semibold shadow-lg shadow-blue-500/20">
+                            <div class="flex items-center gap-2">
+                                <span class="w-5 h-5 rounded-md bg-white/20 flex items-center justify-center font-bold text-[11px]">2</span>
+                                <span>Total + PPN 11%: <strong class="font-mono">Rp 53.280</strong></span>
+                            </div>
+                            <span class="font-bold">Lanjut Pesan →</span>
+                        </div>
+                    </div>
+
+                    <!-- Panel Kanan: Simulasi Dashboard Kasir POS (5 Kolom) -->
+                    <div class="md:col-span-5 mockup-subcard bg-slate-900/95 border border-slate-800 rounded-2xl p-4 shadow-xl flex flex-col justify-between transition-transform duration-300 group-hover:scale-[1.01]">
+                        <div>
+                            <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-slate-800/80">
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-blue-400">💻 Layar Kasir POS</span>
+                                <span class="text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30">1 Pesanan Baru</span>
+                            </div>
+
+                            <!-- Kartu Antrean Masuk -->
+                            <div class="mockup-item-row bg-slate-950/80 border border-slate-800 rounded-xl p-3 text-left space-y-2 mb-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-mono font-black text-xs bg-amber-500 text-slate-950 px-2 py-0.5 rounded-md">V-001</span>
+                                    <span class="text-[10px] font-mono font-bold text-amber-400">Rp 53.280</span>
+                                </div>
+                                <div class="text-[11px] font-bold text-slate-200">Bapak Joko • Meja 15</div>
+                                <div class="text-[10px] text-slate-400 border-t border-slate-800/80 pt-1.5 space-y-0.5">
+                                    <div class="flex justify-between"><span>1x Nasi Goreng Spesial</span><span>20rb</span></div>
+                                    <div class="flex justify-between"><span>1x Chicken Steak Crispy</span><span>28rb</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-full py-2 rounded-xl bg-emerald-600/20 border border-emerald-500/30 text-emerald-400 text-[11px] font-bold text-center">
+                            ✓ Terima &amp; Proses Dapur
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Mockup Content Preview Area (Teks Asli) -->
             <div class="p-8 md:p-12 text-center bg-gradient-to-b from-slate-900/40 to-slate-950">
                 <h3 class="text-2xl font-bold mb-3">Simulasi Tampilan Cepat & Ringan</h3>
                 <p class="text-slate-400 max-w-lg mx-auto mb-8 text-sm leading-relaxed">
@@ -105,28 +220,74 @@
         </div>
     </section>
 
-    <!-- Fitur Unggulan E-Menu -->
+    <!-- Fitur Unggulan E-Menu (Dilengkapi Garis Alur & Ikon SVG Berbingkai) -->
     <section id="features" class="py-20 px-6 max-w-6xl mx-auto border-t border-slate-900">
         <div class="text-center mb-16">
             <h2 class="text-3xl font-bold tracking-tight mb-3">Keunggulan Digital E-Menu</h2>
             <p class="text-slate-400 max-w-xl mx-auto">Dirancang khusus untuk meningkatkan efisiensi operasional dan pengalaman pelanggan.</p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="p-6 rounded-2xl bg-slate-900/40 border border-slate-800/80">
-                <div class="text-2xl mb-4">📱</div>
-                <h3 class="font-semibold text-lg mb-2">Akses Tanpa Aplikasi</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Pelanggan hanya perlu membuka kamera HP untuk memindai QR Code di meja tanpa perlu mengunduh aplikasi tambahan.</p>
-            </div>
-            <div class="p-6 rounded-2xl bg-slate-900/40 border border-slate-800/80">
-                <div class="text-2xl mb-4">⚡</div>
-                <h3 class="font-semibold text-lg mb-2">Navigasi Kategori Cepat</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Penyusunan menu berdasarkan kategori (Makanan Utama, Minuman, Dessert, Snack) dilengkapi filter pencarian instan.</p>
-            </div>
-            <div class="p-6 rounded-2xl bg-slate-900/40 border border-slate-800/80">
-                <div class="text-2xl mb-4">🛒</div>
-                <h3 class="font-semibold text-lg mb-2">Simulasi Keranjang & Total</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Fitur keranjang belanja interaktif yang otomatis menghitung total harga pesanan beserta simulasi pajak atau layanan.</p>
+        <div class="relative">
+            <!-- Garis Penghubung Horizontal (Tampil di Desktop) -->
+            <div class="workflow-connector-line hidden md:block absolute top-1/2 left-8 right-8 -translate-y-1/2 h-0.5 bg-gradient-to-r from-blue-500/10 via-blue-500/40 to-indigo-500/10 pointer-events-none"></div>
+
+            <!-- Garis Penghubung Vertikal (Tampil di Mobile) -->
+            <div class="workflow-connector-line md:hidden absolute top-6 bottom-6 left-6 w-0.5 bg-gradient-to-b from-blue-500/40 via-indigo-500/30 to-transparent pointer-events-none"></div>
+
+            <div class="grid md:grid-cols-3 gap-6 md:gap-8 relative z-10">
+                <!-- Fitur 01 -->
+                <div class="pl-12 md:pl-0 relative">
+                    <div class="md:hidden absolute left-[18px] top-8 w-3.5 h-3.5 rounded-full bg-blue-500 ring-4 ring-slate-950 workflow-mobile-dot"></div>
+                    <div class="p-7 sm:p-8 rounded-2xl bg-slate-900/40 border border-slate-800/80 h-full transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40">
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                                <!-- SVG QR / Smartphone -->
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+                                </svg>
+                            </div>
+                            <span class="text-blue-500/60 font-mono text-2xl font-extrabold">01</span>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">Akses Tanpa Aplikasi</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Pelanggan hanya perlu membuka kamera HP untuk memindai QR Code di meja tanpa perlu mengunduh aplikasi tambahan.</p>
+                    </div>
+                </div>
+
+                <!-- Fitur 02 -->
+                <div class="pl-12 md:pl-0 relative">
+                    <div class="md:hidden absolute left-[18px] top-8 w-3.5 h-3.5 rounded-full bg-blue-500 ring-4 ring-slate-950 workflow-mobile-dot"></div>
+                    <div class="p-7 sm:p-8 rounded-2xl bg-slate-900/40 border border-slate-800/80 h-full transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40">
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                                <!-- SVG Lightning / Fast Filter -->
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                            </div>
+                            <span class="text-blue-500/60 font-mono text-2xl font-extrabold">02</span>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">Navigasi Kategori Cepat</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Penyusunan menu berdasarkan kategori (Makanan Utama, Minuman, Dessert, Snack) dilengkapi filter pencarian instan.</p>
+                    </div>
+                </div>
+
+                <!-- Fitur 03 -->
+                <div class="pl-12 md:pl-0 relative">
+                    <div class="md:hidden absolute left-[18px] top-8 w-3.5 h-3.5 rounded-full bg-blue-500 ring-4 ring-slate-950 workflow-mobile-dot"></div>
+                    <div class="p-7 sm:p-8 rounded-2xl bg-slate-900/40 border border-slate-800/80 h-full transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40">
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                                <!-- SVG Cart / Calculation -->
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                            </div>
+                            <span class="text-blue-500/60 font-mono text-2xl font-extrabold">03</span>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">Simulasi Keranjang & Total</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Fitur keranjang belanja interaktif yang otomatis menghitung total harga pesanan beserta simulasi pajak atau layanan.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -140,7 +301,7 @@
 
         <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <!-- Paket 1: Standar / Basic -->
-            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-8 flex flex-col justify-between">
+            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:border-slate-700">
                 <div>
                     <div class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-slate-800 text-slate-300 mb-4">
                         Paket Starter
@@ -148,10 +309,22 @@
                     <h3 class="text-2xl font-bold mb-2">E-Menu Standar</h3>
                     <p class="text-slate-400 text-sm mb-6">Cocok untuk kedai kopi atau warung makan yang ingin beralih ke katalog digital praktis.</p>
                     <ul class="space-y-3 text-sm text-slate-300 mb-8">
-                        <li class="flex items-center gap-2">✓ Katalog menu kategori lengkap</li>
-                        <li class="flex items-center gap-2">✓ Desain responsif HP & Tablet</li>
-                        <li class="flex items-center gap-2">✓ Desain & cetak siap QR Code meja</li>
-                        <li class="flex items-center gap-2">✓ Gratis setup domain kustom</li>
+                        <li class="flex items-center gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center text-xs font-bold shrink-0">✓</span>
+                            <span>Katalog menu kategori lengkap</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center text-xs font-bold shrink-0">✓</span>
+                            <span>Desain responsif HP & Tablet</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center text-xs font-bold shrink-0">✓</span>
+                            <span>Desain & cetak siap QR Code meja</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center text-xs font-bold shrink-0">✓</span>
+                            <span>Gratis setup domain kustom</span>
+                        </li>
                     </ul>
                 </div>
                 <div>
@@ -162,8 +335,8 @@
             </div>
 
             <!-- Paket 2: Pro / Custom -->
-            <div class="bg-gradient-to-b from-blue-950/30 to-slate-900/40 border border-blue-500/30 rounded-2xl p-8 flex flex-col justify-between relative shadow-xl shadow-blue-500/5">
-                <div class="absolute -top-3 right-6 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+            <div class="bg-gradient-to-b from-blue-950/30 to-slate-900/40 border border-blue-500/30 rounded-2xl p-8 flex flex-col justify-between relative shadow-xl shadow-blue-500/5 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/50">
+                <div class="absolute -top-3 right-6 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
                     Paling Diminati
                 </div>
                 <div>
@@ -173,10 +346,22 @@
                     <h3 class="text-2xl font-bold mb-2">E-Menu + Fitur Order</h3>
                     <p class="text-slate-400 text-sm mb-6">Solusi lengkap dengan keranjang interaktif, kalkulasi otomatis, dan integrasi langsung ke WhatsApp kasir.</p>
                     <ul class="space-y-3 text-sm text-slate-300 mb-8">
-                        <li class="flex items-center gap-2">✓ Semua fitur Paket Starter</li>
-                        <li class="flex items-center gap-2">✓ Simulasi keranjang & total harga</li>
-                        <li class="flex items-center gap-2">✓ Tombol kirim pesanan otomatis via WhatsApp</li>
-                        <li class="flex items-center gap-2">✓ Dukungan revisi & pembaruan menu berkala</li>
+                        <li class="flex items-center gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-blue-500/20 border border-blue-500/40 text-blue-400 flex items-center justify-center text-xs font-bold shrink-0">✓</span>
+                            <span>Semua fitur Paket Starter</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-blue-500/20 border border-blue-500/40 text-blue-400 flex items-center justify-center text-xs font-bold shrink-0">✓</span>
+                            <span>Simulasi keranjang & total harga</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-blue-500/20 border border-blue-500/40 text-blue-400 flex items-center justify-center text-xs font-bold shrink-0">✓</span>
+                            <span>Tombol kirim pesanan otomatis via WhatsApp</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-blue-500/20 border border-blue-500/40 text-blue-400 flex items-center justify-center text-xs font-bold shrink-0">✓</span>
+                            <span>Dukungan revisi & pembaruan menu berkala</span>
+                        </li>
                     </ul>
                 </div>
                 <div>
