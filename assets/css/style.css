@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 :root {
+    color-scheme: light dark;
     --bg-color: #f8fafc;
     --card-bg: #ffffff;
     --text-main: #0f172a;
@@ -16,15 +17,15 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --bg-color: #0f172a;
-        --card-bg: #1e293b;
-        --text-main: #ffffff;
+        --bg-color: #020617;
+        --card-bg: #0f172a;
+        --text-main: #f8fafc;
         --text-muted: #94a3b8;
         --primary: #60a5fa;
         --primary-dark: #3b82f6;
-        --border-color: #334155;
+        --border-color: #1e293b;
         --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-        --header-bg: rgba(15, 23, 42, 0.85);
+        --header-bg: rgba(2, 6, 23, 0.85);
         --accent-bg: rgba(59, 130, 246, 0.1);
     }
 }
@@ -35,32 +36,150 @@
     box-sizing: border-box;
     font-family: 'Plus Jakarta Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 body {
     background-color: var(--bg-color);
     color: var(--text-main);
     line-height: 1.7;
-    overflow-x: hidden; /* Mencegah layar bergeser ke samping */
+    overflow-x: hidden;
 }
 
-/* Header / Navbar Styles */
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--header-bg);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-color);
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5%;
+/* ==========================================================================
+   AUTOMATIC LIGHT MODE ADAPTATION FOR TAILWIND DARK CLASSES
+   Menyesuaikan class statis di index.html & e-menu/index.html tanpa mengubah
+   isi HTML sama sekali saat perangkat berada di mode Terang (Light Mode).
+   Saat perangkat di mode Gelap (Dark Mode), tampilan kembali ke desain asli.
+   ========================================================================== */
+@media (prefers-color-scheme: light) {
+    /* 1. Background Utama & Header */
+    body.bg-slate-950 {
+        background-color: #f8fafc !important;
+        color: #0f172a !important;
+    }
+
+    header.bg-slate-950\/80 {
+        background-color: rgba(255, 255, 255, 0.88) !important;
+        border-bottom-color: #e2e8f0 !important;
+    }
+
+    /* 2. Heading & Teks Utama */
+    h1, h2, h3, h4 {
+        color: #0f172a;
+    }
+
+    .text-slate-100 {
+        color: #0f172a !important;
+    }
+
+    .text-slate-300 {
+        color: #334155 !important;
+    }
+
+    .text-slate-400 {
+        color: #475569 !important;
+    }
+
+    .text-slate-500 {
+        color: #64748b !important;
+    }
+
+    /* 3. Kartu Proyek, Fitur, Cara Kerja, & FAQ */
+    .bg-slate-900\/60,
+    .bg-slate-900\/40,
+    .bg-slate-900\/20 {
+        background-color: #ffffff !important;
+        border-color: #e2e8f0 !important;
+        box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05) !important;
+    }
+
+    /* 4. Mockup Browser Bar & Tombol Sekunder */
+    .bg-slate-900 {
+        background-color: #f1f5f9 !important;
+        border-color: #e2e8f0 !important;
+        color: #0f172a !important;
+    }
+
+    a.bg-slate-900:hover,
+    button.hover\:bg-slate-900:hover {
+        background-color: #e2e8f0 !important;
+    }
+
+    .bg-slate-800 {
+        background-color: #e2e8f0 !important;
+        color: #0f172a !important;
+    }
+
+    .hover\:bg-slate-700:hover {
+        background-color: #cbd5e1 !important;
+    }
+
+    /* Address Bar di dalam Mockup Browser */
+    .bg-slate-950\/60 {
+        background-color: #ffffff !important;
+        border-color: #cbd5e1 !important;
+        color: #475569 !important;
+    }
+
+    /* Area Preview di dalam Mockup E-Menu */
+    .from-slate-900\/40.to-slate-950 {
+        background-image: linear-gradient(to bottom, #f8fafc, #f1f5f9) !important;
+    }
+
+    /* 5. Garis Pembatas Antar Section (Border) */
+    .border-slate-900,
+    .border-slate-800,
+    .border-slate-800\/80,
+    .border-slate-800\/50 {
+        border-color: #e2e8f0 !important;
+    }
+
+    /* 6. Badge & Label Kategori */
+    .bg-blue-500\/10 {
+        background-color: #eff6ff !important;
+        border-color: #bfdbfe !important;
+    }
+
+    .text-blue-400 {
+        color: #2563eb !important;
+    }
+
+    .group:hover .group-hover\:text-blue-400,
+    .hover\:text-blue-400:hover {
+        color: #1d4ed8 !important;
+    }
+
+    .bg-purple-500\/10 {
+        background-color: #faf5ff !important;
+        border-color: #e9d5ff !important;
+    }
+
+    .text-purple-400 {
+        color: #9333ea !important;
+    }
+
+    .group:hover .group-hover\:text-purple-400 {
+        color: #7e22ce !important;
+    }
+
+    /* 7. Kotak Call to Action (CTA) & Kartu Paket Pro */
+    .from-blue-950\/40.to-slate-900\/60,
+    .from-blue-950\/30.to-slate-900\/40 {
+        background-image: linear-gradient(to bottom, #eff6ff, #ffffff) !important;
+        border-color: #93c5fd !important;
+        box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.1) !important;
+    }
+
+    /* Pastikan teks tombol utama biru tetap putih */
+    .bg-blue-600 {
+        color: #ffffff !important;
+    }
 }
 
+/* ==========================================================================
+   KOMPONEN UMUM & LAYOUT TAMBAHAN
+   ========================================================================== */
 .logo-container {
     display: flex;
     align-items: center;
@@ -85,59 +204,10 @@ header {
     color: var(--primary);
 }
 
-nav a {
-    color: var(--text-muted);
-    text-decoration: none;
-    margin-left: 20px;
-    font-weight: 500;
-    font-size: 0.9rem;
-}
-
-nav a:hover {
-    color: var(--text-main);
-}
-
-.back-link {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.85rem;
-}
-
-.back-link:hover {
-    color: var(--text-main);
-}
-
-/* Layout & Common Typography Components */
 .wrapper, .container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 100px 5% 60px 5%; /* Padding atas disesuaikan agar pas di HP */
-}
-
-h1, h2, h3, h4 {
-    color: var(--text-main);
-    letter-spacing: -0.03em;
-}
-
-.wrapper h1, .hero h1 {
-    font-size: clamp(1.8rem, 3.5vw, 2.75rem);
-    font-weight: 800;
-    line-height: 1.25;
-    margin-bottom: 16px;
-}
-
-.wrapper .lead, .hero p {
-    font-size: 1rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 24px;
-}
-
-.section-heading, .container h2 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 12px;
+    padding: 100px 5% 60px 5%;
 }
 
 .badge {
@@ -172,45 +242,22 @@ h1, h2, h3, h4 {
     transform: translateY(-2px);
 }
 
-/* Footer Styles */
-footer {
-    text-align: center;
-    padding: 30px 5%;
-    border-top: 1px solid var(--border-color);
-    color: var(--text-muted);
-    font-size: 0.85rem;
-}
-
 /* --- RESPONSIF KHUSUS MOBILE (Layar < 768px) --- */
 @media (max-width: 768px) {
-    /* Perbesar padding kiri-kanan dari 4% menjadi 6% atau 20px supaya lebih lega */
     .wrapper, .container {
         padding-left: 20px !important;
         padding-right: 20px !important;
     }
 
-    nav {
-        display: flex;
-        gap: 12px;
-    }
-    
-    nav a {
-        margin-left: 0;
-        font-size: 0.85rem;
-    }
-
-    /* Penyesuaian ukuran grid agar turun ke bawah 1 kolom secara rapi di HP */
     .features-grid, .pricing-grid, .steps-grid, .grid, .grid-demos {
         grid-template-columns: 1fr !important;
         gap: 16px;
     }
 
-    /* Penyesuaian padding kartu di HP */
     .feature-card, .card, .pricing-card, .step-card, .feature-box, .card-demo {
         padding: 24px 20px;
     }
 
-    /* Banner CTA di E-Menu / Bottom CTA menyesuaikan tumpukan vertikal */
     .cta-banner, .bottom-cta {
         padding: 30px 20px !important;
     }
@@ -221,22 +268,22 @@ footer {
     }
 }
 
-/* Smooth Scrolling & Kustomisasi Tampilan Dasar */
+/* Smooth Scrolling */
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
-/* Kustomisasi Scrollbar Minimalis */
+/* Kustomisasi Scrollbar Minimalis (Adaptif Light & Dark Mode) */
 ::-webkit-scrollbar {
-  width: 8px;
+    width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #020617;
+    background: var(--bg-color);
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 4px;
+    background: var(--border-color);
+    border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+    background: var(--text-muted);
 }
