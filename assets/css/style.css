@@ -48,9 +48,8 @@ body {
 
 /* ==========================================================================
    AUTOMATIC LIGHT MODE ADAPTATION FOR TAILWIND DARK CLASSES
-   Menyesuaikan class statis di index.html & e-menu/index.html tanpa mengubah
-   isi HTML sama sekali saat perangkat berada di mode Terang (Light Mode).
-   Saat perangkat di mode Gelap (Dark Mode), tampilan kembali ke desain asli.
+   Menyesuaikan class statis di index.html & e-menu/index.html saat perangkat
+   berada di mode Terang (Light Mode), termasuk elemen Mini-Mockup & Timeline.
    ========================================================================== */
 @media (prefers-color-scheme: light) {
     /* 1. Background Utama & Header */
@@ -69,7 +68,8 @@ body {
         color: #0f172a;
     }
 
-    .text-slate-100 {
+    .text-slate-100,
+    .text-slate-200 {
         color: #0f172a !important;
     }
 
@@ -122,16 +122,37 @@ body {
         color: #475569 !important;
     }
 
-    /* Area Preview di dalam Mockup E-Menu */
-    .from-slate-900\/40.to-slate-950 {
-        background-image: linear-gradient(to bottom, #f8fafc, #f1f5f9) !important;
+    /* Area Preview di dalam Mockup E-Menu & Kartu Proyek (#2) */
+    .from-slate-900\/40.to-slate-950,
+    .mockup-preview-area {
+        background-image: linear-gradient(to bottom, #f8fafc, #eff6ff) !important;
+        border-bottom-color: #e2e8f0 !important;
+    }
+
+    .mockup-inner-card,
+    .mockup-subcard {
+        background-color: #ffffff !important;
+        border-color: #cbd5e1 !important;
+        box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08) !important;
+    }
+
+    .mockup-item-row {
+        background-color: #f8fafc !important;
+        border-color: #e2e8f0 !important;
+    }
+
+    /* Ring Titik Timeline Mobile (#3) */
+    .workflow-mobile-dot {
+        --tw-ring-color: #f8fafc !important;
     }
 
     /* 5. Garis Pembatas Antar Section (Border) */
     .border-slate-900,
     .border-slate-800,
     .border-slate-800\/80,
-    .border-slate-800\/50 {
+    .border-slate-800\/70,
+    .border-slate-800\/50,
+    .border-slate-700 {
         border-color: #e2e8f0 !important;
     }
 
@@ -150,17 +171,24 @@ body {
         color: #1d4ed8 !important;
     }
 
-    .bg-purple-500\/10 {
+    .bg-purple-500\/10,
+    .bg-purple-500\/15,
+    .bg-purple-600\/20 {
         background-color: #faf5ff !important;
         border-color: #e9d5ff !important;
     }
 
-    .text-purple-400 {
+    .text-purple-400,
+    .text-purple-300 {
         color: #9333ea !important;
     }
 
     .group:hover .group-hover\:text-purple-400 {
         color: #7e22ce !important;
+    }
+
+    .text-amber-400 {
+        color: #d97706 !important;
     }
 
     /* 7. Kotak Call to Action (CTA) & Kartu Paket Pro */
