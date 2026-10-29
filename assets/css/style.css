@@ -270,6 +270,31 @@ body {
     transform: translateY(-2px);
 }
 
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #2563eb; /* Biru utama yang selaras dengan aksen web */
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 9999px; /* Rounded pill agar modern & ramah */
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-cta:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+}
+
+.btn-cta:active {
+  transform: translateY(0);
+}
+
 /* --- RESPONSIF KHUSUS MOBILE (Layar < 768px) --- */
 @media (max-width: 768px) {
     .wrapper, .container {
