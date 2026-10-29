@@ -8,22 +8,62 @@
     <link href="./favicon.ico" rel="icon" type="image/x-icon">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js untuk interaksi menu mobile hamburger -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-blue-500 selection:text-white">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-blue-500 selection:text-white" x-data="{ mobileMenuOpen: false }">
 
-    <!-- Header / Navbar (Tombol WhatsApp di atas sudah dihapus) -->
+    <!-- Header / Navbar dengan Hamburger Menu Mobile (#5) -->
     <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
         <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="#" class="font-bold text-lg tracking-tight bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
-                Karsalana Lab
+            <a href="#" class="flex items-center gap-2.5 group">
+                <img src="./Karsalana.png" alt="Karsalana Lab" class="h-7 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.style.display='none'">
+                <span class="font-bold text-lg tracking-tight bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+                    Karsalana Lab
+                </span>
             </a>
+
+            <!-- Navigasi Desktop -->
             <nav class="hidden md:flex items-center gap-6 text-sm text-slate-300">
                 <a href="#demos" class="hover:text-blue-400 transition-colors">Live Demo</a>
                 <a href="#workflow" class="hover:text-blue-400 transition-colors">Cara Kerja</a>
                 <a href="#features" class="hover:text-blue-400 transition-colors">Keunggulan</a>
                 <a href="#faq" class="hover:text-blue-400 transition-colors">FAQ</a>
             </nav>
+
+            <!-- Tombol Hamburger Menu (Khusus Mobile) -->
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 focus:outline-none transition-colors" aria-label="Menu Utama">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    <path x-show="mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" style="display: none;"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Menu Dropdown Mobile -->
+        <div x-show="mobileMenuOpen" @click.away="mobileMenuOpen = false" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="md:hidden bg-slate-900 border-b border-slate-800 px-6 py-5 space-y-3.5 shadow-2xl" style="display: none;">
+            <a href="#demos" @click="mobileMenuOpen = false" class="flex items-center justify-between text-sm text-slate-300 hover:text-blue-400 font-medium py-1.5 transition-colors">
+                <span>Live Demo & Proyek</span>
+                <span class="text-xs text-slate-500">→</span>
+            </a>
+            <a href="#workflow" @click="mobileMenuOpen = false" class="flex items-center justify-between text-sm text-slate-300 hover:text-blue-400 font-medium py-1.5 transition-colors">
+                <span>Bagaimana Cara Kerjanya</span>
+                <span class="text-xs text-slate-500">→</span>
+            </a>
+            <a href="#features" @click="mobileMenuOpen = false" class="flex items-center justify-between text-sm text-slate-300 hover:text-blue-400 font-medium py-1.5 transition-colors">
+                <span>Standar Kualitas</span>
+                <span class="text-xs text-slate-500">→</span>
+            </a>
+            <a href="#faq" @click="mobileMenuOpen = false" class="flex items-center justify-between text-sm text-slate-300 hover:text-blue-400 font-medium py-1.5 transition-colors">
+                <span>Pertanyaan Umum (FAQ)</span>
+                <span class="text-xs text-slate-500">→</span>
+            </a>
+            <div class="pt-3 border-t border-slate-800">
+                <a href="https://wa.me/6280000000000?text=Halo%20Karsalana%20Lab,%20saya%20ingin%20konsultasi%20proyek%20website." target="_blank" class="block text-center w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold shadow-lg shadow-blue-500/20 transition-all">
+                    Konsultasi Gratis via WhatsApp
+                </a>
+            </div>
         </div>
     </header>
 
@@ -48,7 +88,7 @@
         </div>
     </section>
 
-    <!-- Live Demo & Proyek Web Section -->
+    <!-- Live Demo & Proyek Web Section (#2 Dilengkapi Mini-Mockup UI Visual) -->
     <section id="demos" class="py-20 px-6 max-w-6xl mx-auto border-t border-slate-900">
         <div class="text-center mb-16">
             <h2 class="text-3xl font-bold tracking-tight mb-3">Live Demo & Proyek Web</h2>
@@ -66,8 +106,75 @@
                         <span class="w-3 h-3 rounded-full bg-yellow-500/80 block"></span>
                         <span class="w-3 h-3 rounded-full bg-green-500/80 block"></span>
                     </div>
-                    <div class="mx-auto bg-slate-950/60 px-4 py-1 rounded-md text-xs text-slate-400 font-mono tracking-wider border border-slate-800/50">
+                    <div class="mx-auto bg-slate-950/60 px-4 py-1 rounded-md text-xs text-slate-400 font-mono tracking-wider border border-slate-800/50 truncate max-w-[200px] sm:max-w-none">
                         lab.karsalana.my.id/e-menu/
+                    </div>
+                </div>
+
+                <!-- Mini-Mockup UI Preview: Digital E-Menu -->
+                <div class="mockup-preview-area relative h-52 bg-gradient-to-b from-slate-900/50 to-slate-950/90 border-b border-slate-800/80 p-4 flex items-center justify-center overflow-hidden">
+                    <!-- Ambient Glow -->
+                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-blue-500/15 rounded-full blur-2xl pointer-events-none"></div>
+                    <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+                    <div class="relative w-full max-w-sm flex items-center gap-3">
+                        <!-- Ilustrasi QR Stand Meja (Kiri) -->
+                        <div class="mockup-subcard hidden sm:flex flex-col items-center justify-center bg-slate-900/90 border border-slate-800 rounded-xl p-3 w-28 shrink-0 shadow-lg transform -rotate-3 transition-transform duration-300 group-hover:rotate-0">
+                            <div class="w-14 h-14 rounded-lg bg-slate-950 border border-slate-800 p-1.5 grid grid-cols-3 gap-1 mb-2">
+                                <span class="bg-blue-400 rounded-xs col-span-2 row-span-2"></span>
+                                <span class="bg-slate-700 rounded-xs"></span>
+                                <span class="bg-slate-600 rounded-xs"></span>
+                                <span class="bg-slate-700 rounded-xs"></span>
+                                <span class="bg-amber-400 rounded-xs col-span-2"></span>
+                            </div>
+                            <span class="text-[10px] font-bold text-slate-300 tracking-wide">SCAN MEJA 15</span>
+                            <span class="text-[9px] text-blue-400 font-mono">Tanpa Aplikasi</span>
+                        </div>
+
+                        <!-- Ilustrasi Layar Aplikasi E-Menu (Tengah/Kanan) -->
+                        <div class="mockup-inner-card flex-1 bg-slate-900/95 border border-slate-800 rounded-xl p-3 shadow-xl transition-transform duration-300 group-hover:scale-[1.02]">
+                            <!-- Mini Topbar Resto -->
+                            <div class="flex items-center justify-between pb-2 mb-2.5 border-b border-slate-800/80">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                                    <span class="text-[11px] font-bold text-slate-200">Bistro & Dine Luxe</span>
+                                </div>
+                                <span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/30">Meja #15</span>
+                            </div>
+
+                            <!-- Mini Menu List -->
+                            <div class="space-y-1.5 mb-2.5">
+                                <div class="mockup-item-row flex items-center justify-between bg-slate-950/70 border border-slate-800/70 rounded-lg p-1.5">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-6 h-6 rounded-md bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-xs">🥩</span>
+                                        <div>
+                                            <div class="text-[10px] font-semibold text-slate-200 leading-tight">Chicken Steak Crispy</div>
+                                            <div class="text-[9px] font-mono text-amber-400">Rp 28.000</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-1 bg-slate-900 border border-slate-700 rounded-md px-1.5 py-0.5 text-[9px] font-bold text-slate-300">
+                                        <span>-</span><span class="text-amber-400 px-1">2</span><span>+</span>
+                                    </div>
+                                </div>
+
+                                <div class="mockup-item-row flex items-center justify-between bg-slate-950/70 border border-slate-800/70 rounded-lg p-1.5">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-6 h-6 rounded-md bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-xs">☕</span>
+                                        <div>
+                                            <div class="text-[10px] font-semibold text-slate-200 leading-tight">Kopi Susu Gula Aren</div>
+                                            <div class="text-[9px] font-mono text-amber-400">Rp 15.000</div>
+                                        </div>
+                                    </div>
+                                    <span class="text-[9px] font-bold px-2 py-0.5 rounded-md bg-blue-600 text-white">+ Pilih</span>
+                                </div>
+                            </div>
+
+                            <!-- Mini Floating Checkout Bar -->
+                            <div class="flex items-center justify-between bg-blue-600 text-white rounded-lg px-2.5 py-1.5 text-[10px] font-semibold shadow-md shadow-blue-500/20">
+                                <span>3 Item • PPN 11% Otomatis</span>
+                                <span class="font-mono font-bold">Lanjut →</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -105,6 +212,50 @@
                     </div>
                 </div>
 
+                <!-- Mini-Mockup UI Preview: Undangan Digital -->
+                <div class="mockup-preview-area relative h-52 bg-gradient-to-b from-slate-900/50 to-slate-950/90 border-b border-slate-800/80 p-4 flex items-center justify-center overflow-hidden">
+                    <!-- Ambient Glow -->
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-purple-500/15 rounded-full blur-2xl pointer-events-none"></div>
+                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+                    <div class="mockup-inner-card relative w-full max-w-xs bg-slate-900/95 border border-slate-800 rounded-xl p-3.5 text-center shadow-xl transition-transform duration-300 group-hover:scale-[1.02]">
+                        <!-- Floating Audio Pill -->
+                        <div class="mockup-item-row absolute top-2.5 right-2.5 flex items-center gap-1 px-2 py-0.5 rounded-full bg-purple-500/15 border border-purple-500/30 text-[9px] font-semibold text-purple-300">
+                            <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-ping"></span>
+                            <span>🎵 Audio On</span>
+                        </div>
+
+                        <div class="text-[9px] uppercase tracking-widest text-purple-400 font-bold mb-1">The Wedding Of</div>
+                        <div class="text-base font-extrabold tracking-tight text-slate-100 mb-2">Rama &amp; Shinta</div>
+
+                        <!-- Countdown Mini -->
+                        <div class="grid grid-cols-4 gap-1.5 max-w-[200px] mx-auto mb-2.5">
+                            <div class="mockup-item-row bg-slate-950/80 border border-slate-800 rounded-lg py-1">
+                                <div class="text-xs font-extrabold text-purple-400 font-mono">14</div>
+                                <div class="text-[8px] text-slate-400 uppercase">Hari</div>
+                            </div>
+                            <div class="mockup-item-row bg-slate-950/80 border border-slate-800 rounded-lg py-1">
+                                <div class="text-xs font-extrabold text-purple-400 font-mono">08</div>
+                                <div class="text-[8px] text-slate-400 uppercase">Jam</div>
+                            </div>
+                            <div class="mockup-item-row bg-slate-950/80 border border-slate-800 rounded-lg py-1">
+                                <div class="text-xs font-extrabold text-purple-400 font-mono">45</div>
+                                <div class="text-[8px] text-slate-400 uppercase">Menit</div>
+                            </div>
+                            <div class="mockup-item-row bg-slate-950/80 border border-slate-800 rounded-lg py-1">
+                                <div class="text-xs font-extrabold text-purple-400 font-mono">20</div>
+                                <div class="text-[8px] text-slate-400 uppercase">Detik</div>
+                            </div>
+                        </div>
+
+                        <!-- Guest Tag via URL Query -->
+                        <div class="mockup-item-row bg-slate-950/70 border border-slate-800/80 rounded-lg px-2.5 py-1.5 flex items-center justify-between text-[10px]">
+                            <span class="text-slate-400">Kepada Yth: <strong class="text-slate-200">Bpk/Ibu Tamu VIP</strong></span>
+                            <span class="px-2 py-0.5 rounded bg-purple-600/20 text-purple-300 border border-purple-500/30 font-semibold text-[9px]">RSVP ✓</span>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Mockup Body -->
                 <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
                     <div>
@@ -127,28 +278,80 @@
         </div>
     </section>
 
-    <!-- Bagaimana Cara Kerjanya -->
+    <!-- Bagaimana Cara Kerjanya (#3 Connected Timeline + Ikon SVG) -->
     <section id="workflow" class="py-20 px-6 max-w-6xl mx-auto border-t border-slate-900">
         <div class="text-center mb-16">
             <h2 class="text-3xl font-bold tracking-tight mb-3">Bagaimana Cara Kerjanya?</h2>
             <p class="text-slate-400 max-w-xl mx-auto">Proses pemesanan yang transparan, terstruktur, dan tidak pakai ribet.</p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-slate-900/40 p-8 rounded-2xl border border-slate-800/80 relative">
-                <div class="text-blue-500 font-mono text-4xl font-bold mb-4 opacity-80">01</div>
-                <h3 class="text-lg font-semibold mb-2">Konsultasi Kebutuhan</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Diskusikan konsep, referensi desain, dan fitur fungsional apa saja yang kamu perlukan untuk bisnismu.</p>
-            </div>
-            <div class="bg-slate-900/40 p-8 rounded-2xl border border-slate-800/80 relative">
-                <div class="text-blue-500 font-mono text-4xl font-bold mb-4 opacity-80">02</div>
-                <h3 class="text-lg font-semibold mb-2">Pengembangan & Demo</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Kami bangun kerangka dan tampilannya. Kamu bisa langsung memantau progres secara live langsung dari browser.</p>
-            </div>
-            <div class="bg-slate-900/40 p-8 rounded-2xl border border-slate-800/80 relative">
-                <div class="text-blue-500 font-mono text-4xl font-bold mb-4 opacity-80">03</div>
-                <h3 class="text-lg font-semibold mb-2">Peluncuran & Setup</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Website disempurnakan, dihubungkan ke custom domain pilihanmu, dan siap diakses publik untuk menjaring pelanggan.</p>
+        <div class="relative">
+            <!-- Garis Penghubung Horizontal (Tampil di Desktop) -->
+            <div class="workflow-connector-line hidden md:block absolute top-1/2 left-8 right-8 -translate-y-1/2 h-0.5 bg-gradient-to-r from-blue-500/10 via-blue-500/40 to-indigo-500/10 pointer-events-none"></div>
+
+            <!-- Garis Penghubung Vertikal (Tampil di Mobile) -->
+            <div class="workflow-connector-line md:hidden absolute top-6 bottom-6 left-6 w-0.5 bg-gradient-to-b from-blue-500/40 via-indigo-500/30 to-transparent pointer-events-none"></div>
+
+            <div class="grid md:grid-cols-3 gap-6 md:gap-8 relative z-10">
+                <!-- Langkah 01 -->
+                <div class="pl-12 md:pl-0 relative">
+                    <!-- Dot Node Mobile -->
+                    <div class="md:hidden absolute left-[18px] top-8 w-3.5 h-3.5 rounded-full bg-blue-500 ring-4 ring-slate-950 workflow-mobile-dot"></div>
+
+                    <div class="bg-slate-900/40 p-7 sm:p-8 rounded-2xl border border-slate-800/80 relative h-full transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40">
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                                <!-- SVG Chat / Briefing -->
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                </svg>
+                            </div>
+                            <div class="text-blue-500 font-mono text-3xl font-extrabold opacity-80">01</div>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Konsultasi Kebutuhan</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Diskusikan konsep, referensi desain, dan fitur fungsional apa saja yang kamu perlukan untuk bisnismu.</p>
+                    </div>
+                </div>
+
+                <!-- Langkah 02 -->
+                <div class="pl-12 md:pl-0 relative">
+                    <!-- Dot Node Mobile -->
+                    <div class="md:hidden absolute left-[18px] top-8 w-3.5 h-3.5 rounded-full bg-blue-500 ring-4 ring-slate-950 workflow-mobile-dot"></div>
+
+                    <div class="bg-slate-900/40 p-7 sm:p-8 rounded-2xl border border-slate-800/80 relative h-full transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40">
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                                <!-- SVG Code / Live Browser -->
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                </svg>
+                            </div>
+                            <div class="text-blue-500 font-mono text-3xl font-extrabold opacity-80">02</div>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Pengembangan & Demo</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Kami bangun kerangka dan tampilannya. Kamu bisa langsung memantau progres secara live langsung dari browser.</p>
+                    </div>
+                </div>
+
+                <!-- Langkah 03 -->
+                <div class="pl-12 md:pl-0 relative">
+                    <!-- Dot Node Mobile -->
+                    <div class="md:hidden absolute left-[18px] top-8 w-3.5 h-3.5 rounded-full bg-blue-500 ring-4 ring-slate-950 workflow-mobile-dot"></div>
+
+                    <div class="bg-slate-900/40 p-7 sm:p-8 rounded-2xl border border-slate-800/80 relative h-full transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40">
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                                <!-- SVG Rocket / Launch -->
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                                </svg>
+                            </div>
+                            <div class="text-blue-500 font-mono text-3xl font-extrabold opacity-80">03</div>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Peluncuran & Setup</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Website disempurnakan, dihubungkan ke custom domain pilihanmu, dan siap diakses publik untuk menjaring pelanggan.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
